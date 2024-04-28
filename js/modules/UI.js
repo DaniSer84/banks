@@ -97,4 +97,31 @@ function addBanks(container, bank) {
     } )
 }
 
-export {addBanks}
+function addExtra(name, address, container) {
+
+    let item = document.createElement('li')
+    let bankName = document.createElement('h4')
+    let bankAddress = document.createElement('span')
+    let closeButton = document.createElement('button')
+    
+    bankName.innerHTML = name
+    bankAddress.innerHTML = address
+    item.classList.add('extra')
+    
+    bankName.addEventListener('click', function() {
+    bankName.classList.toggle('done')
+    })
+
+    closeButton.textContent = 'X'
+    closeButton.classList.add('close-btn')
+    closeButton.addEventListener('click', () => {
+        item.remove()
+    })
+
+    container.append(item)
+    item.append(bankName)
+    item.append(bankAddress)
+    item.append(closeButton)
+}
+
+export {addBanks, addExtra}

@@ -1,4 +1,4 @@
-import { addBanks } from "./modules/UI.js"
+import { addBanks, addExtra } from "./modules/UI.js"
 
 class Bank {
     constructor(id, code, name, address, type, days, hours, bag, description, key, map, image, orderM, orderE) {
@@ -81,26 +81,13 @@ const alettiGaribaldi = new Bank(59, '', 'Banca Aletti', 'Corso Garibaldi, 99', 
 const allianzTurati = new Bank(60, '', 'Allianz', 'via Turati, 8', 'Extra', '', '', 'di tela nera.', 'Uffici, terzo piano.', false, '')
 
 
-
-console.log(mediobancaMercanti)
-
 let banks = []
 banks.push(bpmCusani, bpmBonaparte, caSanFedele, consuliaMonforte, credemAndegari, credemMonforte, dbProspero, finecoGaribaldi, generaliLiberty, ifisBorghetto, intesaFerrari, intesaCusani, intesaVerdi, mpsOrto, passadoreMatteotti, patrimoniMargherita, ubsPolitecnico, unicreditManzoni, finecoVenezia, alettiVenezia, bpmRovello, allianzPassarella, allianzOrefici, bnlOrso, bnlMarghe, bnlGaribaldi, bpmPontaccio, bpmMercanti, bpmCernaia, bpmMarghe, bpmTurati, bpmSalvini, fideuramVenezia, fideuramHoepli, fideuramMontebello, finecoBiancamano, finecoBroletto, intesaHoepli, intesaPortaNuova, intesaLovanio, intesaBonaparte, lombardaManzoni, mediobancaMercanti, mediobancaAugusto, btlBastioni, unicreditMoscova, unicreditVerdi, unicreditMeda, intesaVenezia, intesaGaribaldi, intesaCordusio, mpsCavour, astiManzoni, bnlTurati, caBroletto, caVerri, caMoscova, caTurati, alettiGaribaldi, allianzTurati)
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
 
-// banks.forEach(bank => {
-
-//     console.log(bank.days)
-// })
-
-
-// let body = document.querySelector('body')
-// let main = document.createElement('main')
 let ulMorning = document.querySelector('#morning')
 let weekDay = document.querySelector('#day')
-let extraTitle = document.querySelector('#extra-title')
-// let tutte = document.querySelector('#tutte')
 let ulExtra = document.querySelector('#extra')
 let addButton = document.querySelector('#add-btn')
 let nameInput = document.querySelector('#nome')
@@ -108,40 +95,8 @@ let addressInput = document.querySelector('#indirizzo')
 let scegli = document.querySelector('.scegli')
 
 
-
-
-// body.append(main)
 // ******* FUNCTIONS ************
 
-
-
-let addExtra = function(name, address) {
-
-    let item = document.createElement('li')
-    let bankName = document.createElement('h4')
-    let bankAddress = document.createElement('span')
-    let closeButton = document.createElement('button')
-    
-    bankName.innerHTML = name
-    bankAddress.innerHTML = address
-    item.classList.add('extra')
-    
-    bankName.addEventListener('click', function() {
-    bankName.classList.toggle('done')
-    })
-
-    closeButton.textContent = 'X'
-    closeButton.classList.add('close-btn')
-scegli
-    closeButton.addEventListener('click', () => {
-        item.remove()
-    })
-
-    ulExtra.append(item)
-    item.append(bankName)
-    item.append(bankAddress)
-    item.append(closeButton)
-}
 
 let createList = function(array) {
     
@@ -227,12 +182,7 @@ let btn3 = document.querySelector('#btn-3')
 let btn4 = document.querySelector('#btn-4')
 let btn5 = document.querySelector('#btn-5')
 
-let extraButton = document.querySelector('#extra-btn')
 let tutteButton = document.querySelector('#tutte-btn')
-
-
-// let day = document.createElement('h1')
-// body.prepend(day)
 
 btn1.addEventListener('click', () => {
         selectMorning(monday) 
@@ -293,7 +243,7 @@ tutteButton.addEventListener('click', () => {
 addButton.addEventListener('click', () => {
     let name = nameInput.value
     let address = addressInput.value
-    addExtra(name, address)
+    addExtra(name, address, ulExtra)
     nameInput.value = ''
     addressInput.value = ''
     // for (i=0; i < ulMorning.children.lenght; i++) {
