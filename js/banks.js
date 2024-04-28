@@ -1,4 +1,4 @@
-import { addBanks, addExtra } from "./modules/UI.js"
+import { addExtra, createList } from "./modules/banks-list.js"
 
 class Bank {
     constructor(id, code, name, address, type, days, hours, bag, description, key, map, image, orderM, orderE) {
@@ -98,19 +98,7 @@ let scegli = document.querySelector('.scegli')
 // ******* FUNCTIONS ************
 
 
-let createList = function(array) {
-    
-    ulMorning.innerHTML = ''
-    scegli.remove()
 
-    array.forEach(bank => {
-
-        addBanks(ulMorning, bank)
-    });
-
-    
-
-}
 
 let selectMorning = function(array) {
     let morning = []
@@ -120,7 +108,8 @@ let selectMorning = function(array) {
         }
     }
     morning.sort((a, b) => a.orderM - b.orderM)
-    createList(morning)
+    createList(morning, ulMorning)
+    scegli.remove()
 }
 
 let selectEvening = function(array) {
@@ -130,7 +119,8 @@ let selectEvening = function(array) {
             evening.push(bank)
         }
     }
-    createList(evening)
+    createList(evening, ulMorning)
+    scegli.remove()
 }
 
 // ***************************************************************
@@ -236,7 +226,8 @@ weekDay.textContent = 'Venerdì pomeriggio'
 
 
 tutteButton.addEventListener('click', () => {
-    createList(banks)
+    createList(banks, ulMorning)
+    scegli.remove()
     weekDay.textContent = 'Tutte'
 })
 
@@ -246,22 +237,5 @@ addButton.addEventListener('click', () => {
     addExtra(name, address, ulExtra)
     nameInput.value = ''
     addressInput.value = ''
-    // for (i=0; i < ulMorning.children.lenght; i++) {
-    //     console.log(ulMorning.children[i])
-    // }
-        // console.dir(ulMorning.children[0])
-        // console.dir(ulMorning.children[1])
-        // console.dir(ulMorning.children[2])
-        // console.dir(ulMorning.children[3])
-        // console.dir(ulMorning.children.length)
-    // console.dir(ulMorning.childNodes[0].childNodes[0].innerText)
 })
 
-let addExtraBtn = document.querySelector('#add-extra')
-let areaExtra = document.querySelector('#extra-area')
-
-// addExtraBtn.addEventListener('click', () => {
-//     for (i=0; i < ulExtra.children.length; i++) {
-//         areaExtra.value = `${ulExtra.children[i].children[0].innerText} - ${ulExtra.children[i].children[1].innerText}`
-//         }
-// })

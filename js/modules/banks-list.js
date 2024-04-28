@@ -1,3 +1,14 @@
+
+
+
+function createList(array, container) {
+    container.innerHTML = ''
+
+    array.forEach(bank => {
+        addBanks(container, bank)
+    });
+}
+
 function addBanks(container, bank) {
     let item = document.createElement('li')
     let bankName = document.createElement('h4')
@@ -124,4 +135,4 @@ function addExtra(name, address, container) {
     item.append(closeButton)
 }
 
-export {addBanks, addExtra}
+export {createList, addExtra}
