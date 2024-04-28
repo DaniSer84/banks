@@ -102,7 +102,10 @@ let bankTypes = {
     all: ['Cont-M', 'CmRp', 'Cont-P', 'Cont-P', 'R', '', 'Extra'],
     morning: ['Cont-M', 'CmRp'],
     evening: ['Cont-P', 'CmRp', 'R'],
-    contestuali: ['Cont-M', 'Cont-P']
+    contestuali: ['Cont-M', 'Cont-P'],
+    ConsegnaRitiro: ['CmRp'],
+    soloRitiro: ['R'],
+    extra: ['Extra']
 }
 
 let bankDays = {
@@ -114,18 +117,46 @@ let bankDays = {
     friday: ['L-V', 'L/M/V']
 }
 
+
 function applyFilter(day, type) {
     let filteredBanks = banks.filter(bank => day.includes(bank.days))
     filteredBanks = filteredBanks.filter(bank => type.includes(bank.type))
     return filteredBanks
 }
 
-console.log(applyFilter(bankDays.tuesday, bankTypes.evening))
+console.log(Object.values(bankDays)[0])
 
-// let filteredBanks = banks.filter(bank => bankDays.all.includes(bank.days))
-// console.log(filteredBanks)
-// filteredBanks = filteredBanks.filter(bank => bankTypes.all.includes(bank.type))
-// console.log(filteredBanks)
+// console.log(applyFilter(day, type))
+
+let daysBtnList = document.querySelector('#days-btn-list')
+let typesBtnList = document.querySelector('#type-btn-list')
+let daysButtons = Array.from(daysBtnList.querySelectorAll('a'))
+let typesButtons = Array.from(typesBtnList.querySelectorAll('a'))
+
+daysBtnList.addEventListener('click', (e) => {
+    // console.log(e.target)
+    let pressedButton = e.target.closest('a')
+    if (pressedButton) {
+        pressedButton.classList.add('active')
+        let otherButtons = daysButtons.filter(button => button !== pressedButton)
+        otherButtons.forEach(button => button.classList.remove('active'))
+        let day = Object.values(bankDays)[daysButtons.indexOf(pressedButton)]
+        console.log(day)
+    } 
+})
+typesBtnList.addEventListener('click', (e) => {
+    // console.log(e.target)
+    let pressedButton = e.target.closest('a')
+    if (pressedButton) {
+        pressedButton.classList.add('active')
+        let otherButtons = typesButtons.filter(button => button !== pressedButton)
+        otherButtons.forEach(button => button.classList.remove('active'))
+        let type = Object.values(bankTypes)[typesButtons.indexOf(pressedButton)]
+        console.log(type)
+    } 
+})
+
+
 
 let selectMorning = function(array) {
     let morning = []
@@ -200,26 +231,26 @@ let btn5 = document.querySelector('#btn-5')
 
 let tutteButton = document.querySelector('#tutte-btn')
 
-btn1.addEventListener('click', () => {
-        selectMorning(monday) 
-        weekDay.textContent = 'Lunedì mattina'
-})
-btn2.addEventListener('click', () => {
-        selectMorning(tuesday)
-        weekDay.textContent = 'Martedì mattina'
-})
-btn3.addEventListener('click', () => {
-        selectMorning(wednesday)
-        weekDay.textContent = 'Mercoledì mattina'
-})
-btn4.addEventListener('click', () => {
-        selectMorning(thursday)
-        weekDay.textContent = 'Giovedì mattina'
-})
-btn5.addEventListener('click', () => {
-    selectMorning(friday)
-    weekDay.textContent = 'Venerdì mattina'
-})
+// btn1.addEventListener('click', () => {
+//         selectMorning(monday) 
+//         weekDay.textContent = 'Lunedì mattina'
+// })
+// btn2.addEventListener('click', () => {
+//         selectMorning(tuesday)
+//         weekDay.textContent = 'Martedì mattina'
+// })
+// btn3.addEventListener('click', () => {
+//         selectMorning(wednesday)
+//         weekDay.textContent = 'Mercoledì mattina'
+// })
+// btn4.addEventListener('click', () => {
+//         selectMorning(thursday)
+//         weekDay.textContent = 'Giovedì mattina'
+// })
+// btn5.addEventListener('click', () => {
+//     selectMorning(friday)
+//     weekDay.textContent = 'Venerdì mattina'
+// })
 
 
 
@@ -229,26 +260,26 @@ let btn3p = document.querySelector('#btn-3p')
 let btn4p = document.querySelector('#btn-4p')
 let btn5p = document.querySelector('#btn-5p')
 
-btn1p.addEventListener('click', () => {
-    selectEvening(monday) 
-    weekDay.textContent = 'Lunedì pomeriggio'
-})
-btn2p.addEventListener('click', () => {
-    selectEvening(tuesday)
-    weekDay.textContent = 'Martedì pomeriggio'
-})
-btn3p.addEventListener('click', () => {
-    selectEvening(wednesday)
-    weekDay.textContent = 'Mercoledì pomeriggio'
-})
-btn4p.addEventListener('click', () => {
-    selectEvening(thursday)
-    weekDay.textContent = 'Giovedì pomeriggio'
-})
-btn5p.addEventListener('click', () => {
-selectEvening(friday)
-weekDay.textContent = 'Venerdì pomeriggio'
-})
+// btn1p.addEventListener('click', () => {
+//     selectEvening(monday) 
+//     weekDay.textContent = 'Lunedì pomeriggio'
+// })
+// btn2p.addEventListener('click', () => {
+//     selectEvening(tuesday)
+//     weekDay.textContent = 'Martedì pomeriggio'
+// })
+// btn3p.addEventListener('click', () => {
+//     selectEvening(wednesday)
+//     weekDay.textContent = 'Mercoledì pomeriggio'
+// })
+// btn4p.addEventListener('click', () => {
+//     selectEvening(thursday)
+//     weekDay.textContent = 'Giovedì pomeriggio'
+// })
+// btn5p.addEventListener('click', () => {
+// selectEvening(friday)
+// weekDay.textContent = 'Venerdì pomeriggio'
+// })
 
 
 tutteButton.addEventListener('click', () => {
