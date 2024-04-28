@@ -86,7 +86,6 @@ let banks = []
 banks.push(bpmCusani, bpmBonaparte, caSanFedele, consuliaMonforte, credemAndegari, credemMonforte, dbProspero, finecoGaribaldi, generaliLiberty, ifisBorghetto, intesaFerrari, intesaCusani, intesaVerdi, mpsOrto, passadoreMatteotti, patrimoniMargherita, ubsPolitecnico, unicreditManzoni, finecoVenezia, alettiVenezia, bpmRovello, allianzPassarella, allianzOrefici, bnlOrso, bnlMarghe, bnlGaribaldi, bpmPontaccio, bpmMercanti, bpmCernaia, bpmMarghe, bpmTurati, bpmSalvini, fideuramVenezia, fideuramHoepli, fideuramMontebello, finecoBiancamano, finecoBroletto, intesaHoepli, intesaPortaNuova, intesaLovanio, intesaBonaparte, lombardaManzoni, mediobancaMercanti, mediobancaAugusto, btlBastioni, unicreditMoscova, unicreditVerdi, unicreditMeda, intesaVenezia, intesaGaribaldi, intesaCordusio, mpsCavour, astiManzoni, bnlTurati, caBroletto, caVerri, caMoscova, caTurati, alettiGaribaldi, allianzTurati)
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
-console.log(banks)
 
 // banks.forEach(bank => {
 
