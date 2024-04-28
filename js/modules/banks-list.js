@@ -19,22 +19,6 @@ function updateFilterParam(filter, value) {
     }
 }
 
-function applyFilter() {
-    let filteredBanks = banks
-    //filtro per tipo
-    if (filterParams.bankType !== '') {
-        filteredBanks = filteredBanks.filter(
-            bank => bank.type === filterParams.bankType
-        )
-    }
-    //filtro per giorno
-    if (filterParams.bankType !== '') {
-        filteredBanks = filteredBanks.filter(bank => 
-            bank.days === filterParams.bankDays) 
-    }
-
-    return filteredStores
-}
 
 // *** CREATE BANK LIST ON DOM ***
 function createList(array, container) {
