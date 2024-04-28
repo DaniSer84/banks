@@ -1,4 +1,4 @@
-import { addExtra, createList } from "./modules/banks-list.js"
+import { addExtra, createList} from "./modules/banks-list.js"
 
 class Bank {
     constructor(id, code, name, address, type, days, hours, bag, description, key, map, image, orderM, orderE) {
@@ -86,7 +86,7 @@ banks.push(bpmCusani, bpmBonaparte, caSanFedele, consuliaMonforte, credemAndegar
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
 
-let ulMorning = document.querySelector('#morning')
+let bankListContainer = document.querySelector('#morning')
 let weekDay = document.querySelector('#day')
 let ulExtra = document.querySelector('#extra')
 let addButton = document.querySelector('#add-btn')
@@ -98,7 +98,34 @@ let scegli = document.querySelector('.scegli')
 // ******* FUNCTIONS ************
 
 
+let bankTypes = {
+    all: ['Cont-M', 'CmRp', 'Cont-P', 'Cont-P', 'R', '', 'Extra'],
+    morning: ['Cont-M', 'CmRp'],
+    evening: ['Cont-P', 'CmRp', 'R'],
+    contestuali: ['Cont-M', 'Cont-P']
+}
 
+let bankDays = {
+    all: ['L-V', 'L/M/V', 'Lun e Gio', 'Lun e Mer', 'Mar', 'Mar e Gio', 'Mer', ''],
+    monday: ['L-V', 'L/M/V', 'Lun e Gio', 'Lun e Mer'],
+    tuesday: ['L-V', 'Mar', 'Mar e Gio'],
+    wednesday: ['L-V', 'L/M/V', 'Lun e Mer', 'Mer'],
+    thursday: ['L-V', 'Lun e Gio', 'Mar e Gio'],
+    friday: ['L-V', 'L/M/V']
+}
+
+function applyFilter(day, type) {
+    let filteredBanks = banks.filter(bank => day.includes(bank.days))
+    filteredBanks = filteredBanks.filter(bank => type.includes(bank.type))
+    return filteredBanks
+}
+
+console.log(applyFilter(bankDays.tuesday, bankTypes.evening))
+
+// let filteredBanks = banks.filter(bank => bankDays.all.includes(bank.days))
+// console.log(filteredBanks)
+// filteredBanks = filteredBanks.filter(bank => bankTypes.all.includes(bank.type))
+// console.log(filteredBanks)
 
 let selectMorning = function(array) {
     let morning = []
@@ -108,7 +135,7 @@ let selectMorning = function(array) {
         }
     }
     morning.sort((a, b) => a.orderM - b.orderM)
-    createList(morning, ulMorning)
+    createList(morning, bankListContainer)
     scegli.remove()
 }
 
@@ -119,12 +146,11 @@ let selectEvening = function(array) {
             evening.push(bank)
         }
     }
-    createList(evening, ulMorning)
+    createList(evening, bankListContainer)
     scegli.remove()
 }
 
 // ***************************************************************
-
 
 // *********** ARRAYS ************+
 
@@ -226,7 +252,7 @@ weekDay.textContent = 'Venerdì pomeriggio'
 
 
 tutteButton.addEventListener('click', () => {
-    createList(banks, ulMorning)
+    createList(banks, bankListContainer)
     scegli.remove()
     weekDay.textContent = 'Tutte'
 })

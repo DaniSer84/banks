@@ -1,5 +1,40 @@
+let filterParams = {
+    bankType: '',
+    bankDays: ''
+}
+
+let bankListContainer = document.querySelector('#morning')
 
 
+function setFilter(filter, value) {
+    updateFilterParam(filter, value)
+    let filteredBanks = applyFilter()
+    createList(filteredBanks, bankListContainer)
+}
+
+function updateFilterParam(filter, value) {
+    filterParams = {
+        ...filterParams,
+        [filter]: value
+    }
+}
+
+function applyFilter() {
+    let filteredBanks = banks
+    //filtro per tipo
+    if (filterParams.bankType !== '') {
+        filteredBanks = filteredBanks.filter(
+            bank => bank.type === filterParams.bankType
+        )
+    }
+    //filtro per giorno
+    if (filterParams.bankType !== '') {
+        filteredBanks = filteredBanks.filter(bank => 
+            bank.days === filterParams.bankDays) 
+    }
+
+    return filteredStores
+}
 
 // *** CREATE BANK LIST ON DOM ***
 function createList(array, container) {
@@ -11,6 +46,7 @@ function createList(array, container) {
 
 function addBanks(container, bank) {
     let item = document.createElement('li')
+    item.classList.add(`${bank.type}`)
     let bankName = document.createElement('h4')
     bankName.innerHTML = bank.name
     let bankAddress = document.createElement('span')
@@ -49,9 +85,6 @@ function addBanks(container, bank) {
         item.append(key) 
     }
     item.append(infoButton)
-
-    // APPLY CLASSES TO ITEMS
-    item.classList.add(`${bank.type}`)
 
     // CREATE INFO SECTION
     let infoContainer = document.createElement('div')
