@@ -1,0 +1,226 @@
+header, footer {
+    font-size: 1.1rem;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+nav svg {
+    scale: 1.6;
+}
+
+hr {
+    border: 2px solid black;
+}
+
+ul {
+    list-style: none;
+}
+section > ul li {
+    padding: 30px;
+}
+li a {
+    text-decoration: none;
+}
+
+.info-g-text-container p {
+    border-bottom: 1px dotted black;
+    padding: 1rem;
+}
+.scegli {
+    margin-top: 70px;
+}
+
+/* .accordion-body ul li {
+    border-bottom: 1px solid lightgray;
+} */
+
+/* .accordion-body ul li:nth-child(odd) {
+    background-color: rgb(235, 235, 235);
+} */
+.giro1 {
+    background-color: rgba(255, 245, 139, 0.543);
+}
+.navbar-collapse {
+    flex-basis: auto;
+}
+.list-icon {
+    max-width: 30px;
+}
+
+/* .accordion li .bank-name {
+    flex-grow: 1;
+} */
+.accordion li {
+    border-radius: .8rem;
+    margin-bottom: 3px;
+    padding: 5px;
+    position: relative;
+}
+.accordion div {
+    border-left: 0.5px solid gray;
+    padding-left: .3rem;
+}
+.accordion li h4 {
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+    background-color: #083c6deb;
+    color: white;
+}
+.accordion li h4:hover {
+    background-color: #083c6dc2;
+}
+.accordion li span {
+    margin-right: 1rem;
+    font-weight: bold;
+    margin-left: 3px;
+}
+.accordion li button {
+    float: right;
+}
+.close-btn {
+    position: absolute;
+    color: red;
+    top: 5px;
+    right: 11px;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+.accordion li button:active {
+    scale: 1.1;
+}
+.Cont-M {
+    background-color: #99f9ff91;
+}
+.Cont-P {
+    background-color: rgba(255, 166, 0, 0.639);
+}
+.CmRp {
+    background-color: lightgoldenrodyellow;
+} 
+.R {
+    background-color: #53f15370;
+}
+.extra {
+    background-color: #cc0000b0;
+    color: white;
+}
+.done::before {
+    content: '\2705';
+    margin-right: .5rem;
+    font-size: 0.95rem;
+}
+.legend {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.accordion ul, ol {
+    padding-left: 0;
+}
+.legenda li {
+    padding: 1rem;
+}
+.prima_dopo a {
+    text-decoration: none;
+}
+/* .l-v, .lmv, .l-m, .l-g, .m-g, .mer, .mar {
+    border-radius: 50%;
+    padding: 0.4rem;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+.l-v {
+    background-color: rgb(198, 247, 247);
+    white-space: nowrap;
+}
+.lmv {
+    background-color: rgb(174, 238, 194);
+}
+.l-m {
+    background-color: lightgoldenrodyellow;
+}
+.l-g {
+    background-color: lightsteelblue;
+}
+.m-g {
+    background-color: lightgreen;
+}
+.mar {
+    background-color: rgb(215, 157, 80);
+}
+.mer {
+    background-color: bisque;
+} */
+footer a {
+    color: white;
+    text-decoration: none;
+}
+.giorni-index li{
+    padding-bottom: .7rem;
+}
+
+.mappe h3 {
+    margin-top: 58px;
+}
+footer .dropdown-item {
+    font-weight: bold;
+}
+.navbar-flex {
+    display: flex;
+}
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+.navbar-brand {
+    order: 2;
+    flex: 1 0 1fr;
+}
+.navbar-nav {
+    order: 1;
+    flex: 0 1 1fr;
+}
+.nav-giorni {
+    order: 3;
+    flex: 0 1 1fr;
+}
+.mappe a {
+    color: rgb(58, 58, 58);
+}
+.accordion-body li a {
+    display: none;
+}
+.info {
+    display: none;
+    position: relative;
+}
+.accordion img {
+    width: 100%;
+}
+
+
+@media (max-width: 600px) {
+    body {
+        font-size: 0.9rem;
+    }
+    .accordion li {
+        /* row-gap: 0.5rem; */
+        padding-bottom: 1rem;
+    } 
+    section > ul li {
+        padding: 10px;
+    }
+    .list-icon {
+        max-width: 15px;
+        padding: 0.01rem;
+    }
+    /* .l-v, .lmv, .l-m, .l-g, .m-g, .mer, .mar{
+        font-size: 0.4rem;
+    } */
+    footer .btn {
+        font-size: 0.8rem;
+    }
+}
