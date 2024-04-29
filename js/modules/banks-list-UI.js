@@ -1,6 +1,3 @@
-// let bankListContainer = document.querySelector('#morning')
-
-
 
 // *** CREATE BANK LIST ON DOM ***
 function createList(array, container) {
