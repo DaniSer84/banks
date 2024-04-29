@@ -1,23 +1,5 @@
-let filterParams = {
-    bankType: '',
-    bankDays: ''
-}
+// let bankListContainer = document.querySelector('#morning')
 
-let bankListContainer = document.querySelector('#morning')
-
-
-function setFilter(filter, value) {
-    updateFilterParam(filter, value)
-    let filteredBanks = applyFilter()
-    createList(filteredBanks, bankListContainer)
-}
-
-function updateFilterParam(filter, value) {
-    filterParams = {
-        ...filterParams,
-        [filter]: value
-    }
-}
 
 
 // *** CREATE BANK LIST ON DOM ***
@@ -109,7 +91,7 @@ function addExtra(name, address, container) {
     
     bankName.innerHTML = name
     bankAddress.innerHTML = address
-    item.classList.add('extra')
+    item.classList.add('Extra')
     
     bankName.addEventListener('click', function() {
     bankName.classList.toggle('done')

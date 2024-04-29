@@ -87,6 +87,7 @@ banks.push(bpmCusani, bpmBonaparte, caSanFedele, consuliaMonforte, credemAndegar
 banks.sort((a, b) => a.name.localeCompare(b.name))
 
 let bankListContainer = document.querySelector('#morning')
+console.log(bankListContainer)
 let weekDay = document.querySelector('#day')
 let ulExtra = document.querySelector('#extra')
 let addButton = document.querySelector('#add-btn')
@@ -117,14 +118,44 @@ let bankDays = {
     friday: ['L-V', 'L/M/V']
 }
 
+let allDays = bankDays.all
+let allTypes = bankTypes.all
 
-function applyFilter(day, type) {
-    let filteredBanks = banks.filter(bank => day.includes(bank.days))
-    filteredBanks = filteredBanks.filter(bank => type.includes(bank.type))
+let filterParams = {
+    bankDay: allDays,
+    bankType: allTypes
+}
+
+
+function setFilter(filter, value) {
+    updateFilterParam(filter, value)
+    console.log(filterParams.bankDay, filterParams.bankType)
+    let filteredBanks = applyFilter()
+    console.log(filteredBanks)
+    createList(filteredBanks, bankListContainer)
+}
+
+function updateFilterParam(filter, value) {
+    filterParams = {
+        ...filterParams,
+        [filter]: value
+    }
+}
+
+function applyFilter() {
+    let filteredBanks = banks
+    // filtro per giorno
+    if (filterParams.bankDay !== allDays) {
+        filteredBanks = filteredBanks.filter(bank => filterParams.bankDay.includes(bank.days))
+    }
+    // filtro per tipo
+    if (filterParams.bankType !== allTypes) {
+        filteredBanks = filteredBanks.filter(bank => filterParams.bankType.includes(bank.type))
+    }
     return filteredBanks
 }
 
-console.log(Object.values(bankDays)[0])
+// console.log(Object.values(bankDays)[0])
 
 // console.log(applyFilter(day, type))
 
@@ -141,7 +172,7 @@ daysBtnList.addEventListener('click', (e) => {
         let otherButtons = daysButtons.filter(button => button !== pressedButton)
         otherButtons.forEach(button => button.classList.remove('active'))
         let day = Object.values(bankDays)[daysButtons.indexOf(pressedButton)]
-        console.log(day)
+        setFilter('bankDay', day)
     } 
 })
 typesBtnList.addEventListener('click', (e) => {
@@ -152,7 +183,7 @@ typesBtnList.addEventListener('click', (e) => {
         let otherButtons = typesButtons.filter(button => button !== pressedButton)
         otherButtons.forEach(button => button.classList.remove('active'))
         let type = Object.values(bankTypes)[typesButtons.indexOf(pressedButton)]
-        console.log(type)
+        setFilter('bankType', type)
     } 
 })
 
@@ -282,11 +313,11 @@ let btn5p = document.querySelector('#btn-5p')
 // })
 
 
-tutteButton.addEventListener('click', () => {
-    createList(banks, bankListContainer)
-    scegli.remove()
-    weekDay.textContent = 'Tutte'
-})
+// tutteButton.addEventListener('click', () => {
+//     createList(banks, bankListContainer)
+//     scegli.remove()
+//     weekDay.textContent = 'Tutte'
+// })
 
 addButton.addEventListener('click', () => {
     let name = nameInput.value
