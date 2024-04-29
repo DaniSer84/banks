@@ -1,43 +1,15 @@
-import { addExtra, createList} from "./modules/banks-list-UI.js"
+import { addExtra} from "./modules/banks-list-UI.js"
 import { banks } from "./modules/constructor.js"
-import {bankListContainer, titleDay, titleType, numberOfBanks, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes, allDays, allTypes} from "./modules/variables.js"
+import {titleDay, titleType, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes} from "./modules/variables.js"
+import { setFilter } from "./modules/filters.js"
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
 
 
+
 // ******* FUNCTIONS ************
 
-let filterParams = {
-    bankDay: allDays,
-    bankType: allTypes
-}
 
-function setFilter(filter, value) {
-    updateFilterParam(filter, value)
-    let filteredBanks = applyFilter()
-    numberOfBanks.textContent = filteredBanks.length
-    createList(filteredBanks, bankListContainer)
-}
-
-function updateFilterParam(filter, value) {
-    filterParams = {
-        ...filterParams,
-        [filter]: value
-    }
-}
-
-function applyFilter() {
-    let filteredBanks = banks
-    // filtro per giorno
-    if (filterParams.bankDay !== allDays) {
-        filteredBanks = filteredBanks.filter(bank => filterParams.bankDay.includes(bank.days))
-    }
-    // filtro per tipo
-    if (filterParams.bankType !== allTypes) {
-        filteredBanks = filteredBanks.filter(bank => filterParams.bankType.includes(bank.type))
-    }
-    return filteredBanks
-}
 
 // console.log(Object.values(bankDays)[0])
 
