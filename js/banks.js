@@ -1,7 +1,7 @@
 import { addExtra} from "./modules/banks-list-UI.js"
 import { banks } from "./modules/constructor.js"
 import {titleDay, titleType, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes} from "./modules/variables.js"
-import { setFilter } from "./modules/filters.js"
+import { setFilter, daysButtons, typesButtons, daysBtnList, typesBtnList, changeToAlphabeticOrder, changeToDeliverOrden } from "./modules/filters.js"
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
 
@@ -15,10 +15,7 @@ banks.sort((a, b) => a.name.localeCompare(b.name))
 
 // console.log(applyFilter(day, type))
 
-let daysBtnList = document.querySelector('#days-btn-list')
-let typesBtnList = document.querySelector('#type-btn-list')
-let daysButtons = Array.from(daysBtnList.querySelectorAll('a'))
-let typesButtons = Array.from(typesBtnList.querySelectorAll('a'))
+
 
 daysBtnList.addEventListener('click', (e) => {
     // console.log(e.target)
@@ -28,10 +25,11 @@ daysBtnList.addEventListener('click', (e) => {
         let otherButtons = daysButtons.filter(button => button !== pressedButton)
         otherButtons.forEach(button => button.classList.remove('active'))
         let day = Object.values(bankDays)[daysButtons.indexOf(pressedButton)]
-        setFilter('bankDay', day)
+        setFilter('bankDay', day, 'day', pressedButton.innerText)
         titleDay.textContent = pressedButton.innerText
     } 
 })
+
 typesBtnList.addEventListener('click', (e) => {
     // console.log(e.target)
     let pressedButton = e.target.closest('a')
@@ -40,11 +38,10 @@ typesBtnList.addEventListener('click', (e) => {
         let otherButtons = typesButtons.filter(button => button !== pressedButton)
         otherButtons.forEach(button => button.classList.remove('active'))
         let type = Object.values(bankTypes)[typesButtons.indexOf(pressedButton)]
-        setFilter('bankType', type)
+        setFilter('bankType', type, 'type', pressedButton.innerText)
         titleType.textContent = pressedButton.innerText
     } 
 })
-
 
 addButton.addEventListener('click', () => {
     let name = nameInput.value
@@ -54,6 +51,13 @@ addButton.addEventListener('click', () => {
     addressInput.value = ''
 })
 
+let alphaOrderBtn = document.querySelector('#alpha-order')
+alphaOrderBtn.addEventListener('click', () => changeToAlphabeticOrder())
+
+let deliverOrderBtn = document.querySelector('#deliver-order')
+deliverOrderBtn.addEventListener('click', () => changeToDeliverOrden())
+
+export {daysButtons, typesButtons}
 // let selectMorning = function(array) {
 //     let morning = []
 //     for (let bank of array) {

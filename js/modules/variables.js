@@ -6,6 +6,8 @@ let ulExtra = document.querySelector('#extra')
 let addButton = document.querySelector('#add-btn')
 let nameInput = document.querySelector('#nome')
 let addressInput = document.querySelector('#indirizzo')
+let alphaOrderBtn = document.querySelector('#alpha-order')
+let deliverOrderBtn = document.querySelector('#deliver-order')
 
 let bankTypes = {
     all: ['Cont-M', 'CmRp', 'Cont-P', 'Cont-P', 'R', '', 'Extra'],
@@ -31,4 +33,4 @@ let allTypes = bankTypes.all
 
 
 
-export {bankListContainer, titleDay, titleType, numberOfBanks, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes, allDays, allTypes}
+export {bankListContainer, titleDay, titleType, numberOfBanks, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes, allDays, allTypes, alphaOrderBtn, deliverOrderBtn}
