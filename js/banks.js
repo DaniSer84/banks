@@ -1,6 +1,6 @@
 import { addExtra} from "./modules/banks-list-UI.js"
 import { banks } from "./modules/constructor.js"
-import {titleDay, titleType, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes} from "./modules/variables.js"
+import {titleDay, titleType, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes, bankListContainer} from "./modules/variables.js"
 import { setFilter, daysButtons, typesButtons, daysBtnList, typesBtnList, changeToAlphabeticOrder, changeToDeliverOrden } from "./modules/filters.js"
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
@@ -52,140 +52,14 @@ addButton.addEventListener('click', () => {
 })
 
 let alphaOrderBtn = document.querySelector('#alpha-order')
-alphaOrderBtn.addEventListener('click', () => changeToAlphabeticOrder())
+alphaOrderBtn.addEventListener('click', () => changeToAlphabeticOrder()
+)
 
 let deliverOrderBtn = document.querySelector('#deliver-order')
 deliverOrderBtn.addEventListener('click', () => changeToDeliverOrden())
 
-export {daysButtons, typesButtons}
-// let selectMorning = function(array) {
-//     let morning = []
-//     for (let bank of array) {
-//         if (bank.type == 'Cont-M' || bank.type == 'CmRp' || bank.type == 'Cont-P') {
-//             morning.push(bank)
-//         }
-//     }
-//     morning.sort((a, b) => a.orderM - b.orderM)
-//     createList(morning, bankListContainer)
-//     scegli.remove()
-// }
+let deleteListBtn = document.querySelector('.delete-list-btn')
+deleteListBtn.addEventListener('click', () => location.reload())
 
-// let selectEvening = function(array) {
-//     let evening = []
-//     for (let bank of array) {
-//         if (bank.type == 'Cont-P' || bank.type == 'R' || bank.type == 'CmRp') {
-//             evening.push(bank)
-//         }
-//     }
-//     createList(evening, bankListContainer)
-//     scegli.remove()
-// }
-
-// // ***************************************************************
-
-// // *********** ARRAYS ************+
-
-// let monday = []
-// for (let bank of banks) {
-//     if (bank.days == 'L-V' || bank.days == 'L/M/V' || bank.days == 'Lun e Gio' || bank.days == 'Lun e Mer') {
-//         monday.push(bank)
-//     }
-// }
-
-// let tuesday = []
-// for (let bank of banks) {
-//     if (bank.days == 'L-V' || bank.days == 'Mar' || bank.days == 'Mar e Gio') {
-//         tuesday.push(bank)
-//     }
-// }
-
-// let wednesday = []
-// for (let bank of banks) {
-//     if (bank.days == 'L-V' || bank.days == 'Mer' || bank.days == 'L/M/V' || bank.days == 'Lun e Mer') {
-//         wednesday.push(bank)
-//     }
-// }
-
-// let thursday = []
-// for (let bank of banks) {
-//     if (bank.days == 'L-V' || bank.days == 'Mar e Gio' || bank.days == 'Lun e Gio') {
-//         thursday.push(bank)
-//     }
-// }
-
-// let friday = []
-// for (let bank of banks) {
-//     if (bank.days == 'L-V' || bank.days == 'L/M/V') {
-//         friday.push(bank)
-//     }
-// }
-
-
-
-
-// let btn1 = document.querySelector('#btn-1')
-// let btn2 = document.querySelector('#btn-2')
-// let btn3 = document.querySelector('#btn-3')
-// let btn4 = document.querySelector('#btn-4')
-// let btn5 = document.querySelector('#btn-5')
-
-// let tutteButton = document.querySelector('#tutte-btn')
-
-// // btn1.addEventListener('click', () => {
-// //         selectMorning(monday) 
-// //         weekDay.textContent = 'Lunedì mattina'
-// // })
-// // btn2.addEventListener('click', () => {
-// //         selectMorning(tuesday)
-// //         weekDay.textContent = 'Martedì mattina'
-// // })
-// // btn3.addEventListener('click', () => {
-// //         selectMorning(wednesday)
-// //         weekDay.textContent = 'Mercoledì mattina'
-// // })
-// // btn4.addEventListener('click', () => {
-// //         selectMorning(thursday)
-// //         weekDay.textContent = 'Giovedì mattina'
-// // })
-// // btn5.addEventListener('click', () => {
-// //     selectMorning(friday)
-// //     weekDay.textContent = 'Venerdì mattina'
-// // })
-
-
-
-// let btn1p = document.querySelector('#btn-1p')
-// let btn2p = document.querySelector('#btn-2p')
-// let btn3p = document.querySelector('#btn-3p')
-// let btn4p = document.querySelector('#btn-4p')
-// let btn5p = document.querySelector('#btn-5p')
-
-// // btn1p.addEventListener('click', () => {
-// //     selectEvening(monday) 
-// //     weekDay.textContent = 'Lunedì pomeriggio'
-// // })
-// // btn2p.addEventListener('click', () => {
-// //     selectEvening(tuesday)
-// //     weekDay.textContent = 'Martedì pomeriggio'
-// // })
-// // btn3p.addEventListener('click', () => {
-// //     selectEvening(wednesday)
-// //     weekDay.textContent = 'Mercoledì pomeriggio'
-// // })
-// // btn4p.addEventListener('click', () => {
-// //     selectEvening(thursday)
-// //     weekDay.textContent = 'Giovedì pomeriggio'
-// // })
-// // btn5p.addEventListener('click', () => {
-// // selectEvening(friday)
-// // weekDay.textContent = 'Venerdì pomeriggio'
-// // })
-
-
-// // tutteButton.addEventListener('click', () => {
-// //     createList(banks, bankListContainer)
-// //     scegli.remove()
-// //     weekDay.textContent = 'Tutte'
-// // })
-
+export {daysButtons, typesButtons, deliverOrderBtn, alphaOrderBtn}
 

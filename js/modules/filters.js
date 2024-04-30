@@ -1,6 +1,7 @@
-import {bankListContainer, numberOfBanks, allDays, allTypes, titleType} from "./variables.js"
+import {bankListContainer, numberOfBanks, allDays, allTypes, titleType, bankDays, bankTypes} from "./variables.js"
 import { banks } from "./constructor.js"
 import { createList } from "./banks-list-UI.js"
+import { deliverOrderBtn, alphaOrderBtn } from "../banks.js"
 
 let daysBtnList = document.querySelector('#days-btn-list')
 let typesBtnList = document.querySelector('#type-btn-list')
@@ -28,12 +29,20 @@ function setFilter(filter, value, key, string) {
     if (orderParams.day !== '' & orderParams.day !== 'Tutti i giorni') {
         if (orderParams.type === 'Mattina') {
            filteredBanks.sort((a, b) => a.orderM - b.orderM)
-        }
-        if (orderParams.type === 'Pomeriggio') {
+           switchClassActiveBtn(deliverOrderBtn, alphaOrderBtn) 
+           deliverOrderBtn.removeAttribute('disabled')
+        } else if (orderParams.type === 'Pomeriggio') {
             filteredBanks.sort((a, b) => a.orderE - b.orderE)
+            switchClassActiveBtn(deliverOrderBtn, alphaOrderBtn)
+            deliverOrderBtn.removeAttribute('disabled')
+        } else {
+            switchClassActiveBtn(alphaOrderBtn, deliverOrderBtn)
+            deliverOrderBtn.setAttribute('disabled', '')
         }
     }  else {
         filteredBanks.sort((a, b) => a.name.localeCompare(b.name))
+        switchClassActiveBtn(alphaOrderBtn, deliverOrderBtn)
+        deliverOrderBtn.setAttribute('disabled', '')
     }
     createList(filteredBanks, bankListContainer)
     return filteredBanks
@@ -41,6 +50,7 @@ function setFilter(filter, value, key, string) {
 
 function changeToAlphabeticOrder() {
     filteredBanks.sort((a, b) => a.name.localeCompare(b.name))
+    switchClassActiveBtn(alphaOrderBtn, deliverOrderBtn)
     createList(filteredBanks, bankListContainer)
 }
 
@@ -50,7 +60,13 @@ function changeToDeliverOrden() {
     } if (titleType.innerText === 'Pomeriggio') {
         filteredBanks.sort((a, b) => a.orderE - b.orderE)
     }
+    switchClassActiveBtn(deliverOrderBtn, alphaOrderBtn)
     createList(filteredBanks, bankListContainer)
+}
+
+function switchClassActiveBtn(btn1, btn2) {
+    btn1.classList.add('order-btn-active')
+    btn2.classList.remove('order-btn-active')
 }
 
 
