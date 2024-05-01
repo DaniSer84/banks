@@ -2,28 +2,14 @@ import { addExtra} from "./modules/banks-list-UI.js"
 import { banks } from "./modules/constructor.js"
 import {titleDay, titleType, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes, bankListContainer} from "./modules/variables.js"
 import { setFilter, daysButtons, typesButtons, daysBtnList, typesBtnList, changeToAlphabeticOrder, changeToDeliverOrden } from "./modules/filters.js"
+import { initMap, map } from "./modules/map.js"
+import { addMarkers } from "./modules/markers.js"
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
 
 
-
-
-// banks.forEach(bank => {
-//     let string = bank.address.split(' ')
-//     string.splice(0, 0, string[string.length-1])
-//     string.pop()
-//     let formattedAddress = string.join('+')
-
-//      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress}+Mi&key=AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I`)
-//         .then(res => res.json())
-//         .then(data => {
-//             coords.push(data.results[0].geometry.location)
-//         })
-// })
-// console.log(coords)
-
-
 // ******* FUNCTIONS ************
+initMap()
 
 
 daysBtnList.addEventListener('click', (e) => {

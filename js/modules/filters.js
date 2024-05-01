@@ -2,6 +2,8 @@ import {bankListContainer, numberOfBanks, allDays, allTypes, titleType} from "./
 import { banks } from "./constructor.js"
 import { createList } from "./banks-list-UI.js"
 import { deliverOrderBtn, alphaOrderBtn } from "../banks.js"
+import { addMarkers } from "./markers.js"
+import { map } from "./map.js"
 
 let daysBtnList = document.querySelector('#days-btn-list')
 let typesBtnList = document.querySelector('#type-btn-list')
@@ -44,6 +46,7 @@ function setFilter(filter, value, key, string) {
         switchClassActiveBtn(alphaOrderBtn, deliverOrderBtn)
         deliverOrderBtn.setAttribute('disabled', '')
     }
+    addMarkers(map, filteredBanks)
     createList(filteredBanks, bankListContainer)
     return filteredBanks
 }
@@ -52,6 +55,7 @@ function changeToAlphabeticOrder() {
     filteredBanks.sort((a, b) => a.name.localeCompare(b.name))
     numberOfBanks.textContent = filteredBanks.length
     switchClassActiveBtn(alphaOrderBtn, deliverOrderBtn)
+    addMarkers(map, filteredBanks)
     createList(filteredBanks, bankListContainer)
 }
 
@@ -63,6 +67,7 @@ function changeToDeliverOrden() {
     }
     numberOfBanks.textContent = filteredBanks.length
     switchClassActiveBtn(deliverOrderBtn, alphaOrderBtn)
+    addMarkers(map, filteredBanks)
     createList(filteredBanks, bankListContainer)
 }
 
