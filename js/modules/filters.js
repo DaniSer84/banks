@@ -50,6 +50,7 @@ function setFilter(filter, value, key, string) {
 
 function changeToAlphabeticOrder() {
     filteredBanks.sort((a, b) => a.name.localeCompare(b.name))
+    numberOfBanks.textContent = filteredBanks.length
     switchClassActiveBtn(alphaOrderBtn, deliverOrderBtn)
     createList(filteredBanks, bankListContainer)
 }
@@ -60,6 +61,7 @@ function changeToDeliverOrden() {
     } if (titleType.innerText === 'Pomeriggio') {
         filteredBanks.sort((a, b) => a.orderE - b.orderE)
     }
+    numberOfBanks.textContent = filteredBanks.length
     switchClassActiveBtn(deliverOrderBtn, alphaOrderBtn)
     createList(filteredBanks, bankListContainer)
 }
