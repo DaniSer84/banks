@@ -35,6 +35,7 @@ function addBanks(container, bank) {
         item.remove()
         infoContainer.remove()
         updateNumberIfDeletedItem()
+        // TODO: make a function for this
         markers.find(marker => marker.getPosition().lat() === bank.coords.lat).setMap(null)
     })
     bankName.addEventListener('click', function() {

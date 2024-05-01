@@ -114,11 +114,14 @@ nav svg {
 }
 .delete-btn {
     position: absolute;
-    color: red;
-    top: 5px;
-    right: 11px;
+    color: #ff6767;
+    top: 6px;
+    right: 5px;
     font-weight: bold;
-    font-size: 1.3rem;
+    font-size: 1rem;
+    padding: .2rem .6rem;
+    background-color: rgb(228 228 228 / 12%);
+    border-radius: 5px;
 }
 .accordion li button:active {
     scale: 1.1;
