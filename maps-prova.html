@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New version</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/moneybag-192x192.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-map-prova.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
+    <script src="https://kit.fontawesome.com/fb85e57258.js" crossorigin="anonymous"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I&callback=console.debug&libraries=maps,marker&v=beta">
+    </script>
+    <script src="js/banks.js" type="module"></script>
+</head>
+<body>
+    <!-- //// HEADER //// -->
+    <header class="fixed-top">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+          <div class="container-fluid gap-5 btn-list-container flex-nowrap">
+            <div class="navbar-collapse d-flex" id="navbarSupportedContent">
+              <ul class="navbar-nav  mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Giorni
+                  </a>
+                  <ul class="dropdown-menu" id="days-btn-list">
+                    <li><a class="dropdown-item" data-day="all-days">Tutte</a></li>
+                    <li><a class="dropdown-item" data-day="monday">Lunedì</a></li>
+                    <li><a class="dropdown-item" data-day="tuesday">Martedì</a></li>
+                    <li><a class="dropdown-item" data-day="wednesday">Mercoledì</a></li>
+                    <li><a class="dropdown-item" data-day="thursday">Giovedì</a></li>
+                    <li><a class="dropdown-item" data-day="friday">Venerdì</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="navbar-collapse d-flex" id="navbarSupportedContent">
+              <ul class="navbar-nav mb-lg-0">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Tipo
+                  </a>
+                  <ul class="dropdown-menu" id="type-btn-list">
+                    <li><a class="dropdown-item" >Tutte</a></li>
+                    <li><a class="dropdown-item" >Mattina</a></li>
+                    <li><a class="dropdown-item" >Pomeriggio</a></li>
+                    <li><a class="dropdown-item" >Contestuali</a></li>
+                    <li><a class="dropdown-item" >Consegna e Ritiro</a></li>
+                    <li><a class="dropdown-item">Solo Ritiro</a></li>
+                    <li><a class="dropdown-item">Extra</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="container-fluid navbar-collapse text-end">
+              <button class="btn btn-danger delete-list-btn"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+          </div>
+        </nav>
+  </header>
+
+<!-- //// MAIN //// -->
+  <main>
+<!-- liste -->
+<div class="map-container">
+    <gmp-map center="45.453453063964844,9.224400520324707" zoom="14" map-id="DEMO_MAP_ID">
+      <gmp-advanced-marker position="45.453453063964844,9.224400520324707" title="My location"></gmp-advanced-marker>
+    </gmp-map>
+  </div>
+    <div class="order-buttons-container">
+      <p class="scegli">Scegli una lista &#9757</p>
+      <div>
+        <h4>ordine</h4>
+        <div class="order-btn-container">
+          <button id="alpha-order" class="order-btn order-btn-active"><i class="fa-solid fa-arrow-down-a-z"></i></button>
+          <button id="deliver-order" class="order-btn"><i class="fa-solid fa-route"></i></button>
+        </div>
+      </div>
+    </div>
+    <section class="container">
+      <h1 class="display-3 text-center" id="title-day"></h1>
+      <h3 id="title-type"></h3>
+      <p>Tot: <b><span id="number-of-banks"></b></span> banche</p>
+      <div class="accordion" id="accordionExample">
+        <ul id="bank-list-container">
+        </ul>
+      </div>
+      <div class="accordion" id="accordionExample">
+        <h4 class="text-center">Extra</h4>
+        <ul id="extra">
+        </ul>
+      </div>
+    </section>
+    <div class="container">
+      <h3>Aggiungi extra</h3>
+      <label for="nome">Nome</label>
+      <input class="mb-2" type="text" id="nome" list="nomi">
+      <datalist id="nomi">
+        <option value="Anima"></option>
+        <option value="Allianz"></option>
+        <option value="Credit Suisse"></option>
+        <option value="Intrum"></option>
+        <option value="Omega"></option>
+      </datalist><br>
+      <label for="indirizzo">Indirizzo</label>
+      <input class="mb-2" type="text" id="indirizzo" list="indirizzi">
+      <datalist id="indirizzi">
+        <option value="Corso Garibaldi 99"></option>
+        <option value="Via Turati 8"></option>
+        <option value="Via Santa Margherita 3"></option>
+        <option value="Bastioni di Porta Nuova 19"></option>
+        <option value="Via Principe Amedeo 1"></option>
+      </datalist><br>
+      <button type="button" class="btn btn bg-primary text-white" id="add-btn">Aggiungi</button>
+    </div>
+
+    <!-- *** LEGENDA *** -->
+    <section class="container legenda mb-5" >
+      <h1 class="mb-4 text-center" id="legenda">Legenda</h1>
+        <!-- CONTESTUALE -->
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <p class="Cont-P py-2 small">Cont-P</p>
+          </div>
+          <div class="col-10 col-md-11">
+            Contestuale (consegna e ritiro allo stesso tempo) che si fa il pomeriggio. Se anche non fosse arrivato niente da consegnare passare comunque a chiedere se hanno posta da ritirare.
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <p class="Cont-M py-2 small">Cont-M</p>
+          </div>
+          <div class="col-10 col-md-11">
+            Contestuale (consegna e ritiro allo stesso tempo) che si fa la mattina. Se anche non fosse arrivato niente da consegnare passare comunque a chiedere se hanno posta da ritirare.
+          </div>
+        </div>
+        <!-- CONSEGNA E RITIRO -->
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+           <p class="CmRp py-2 small">CmRp</p> 
+          </div>
+          <div class="col-10 col-md-11">
+            Consegna la mattina e ritiro il pomeriggio all'orario indicato.
+          </div>
+        </div>
+        <!-- SOLO RITIRO -->
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <p class="R py-2 small">R</p> 
+          </div>
+          <div class="col-10 col-md-11">
+            Solo ritiro all'orario indicato.
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <p class="extra py-2 small">Extra</p> 
+          </div>
+          <div class="col-10 col-md-11">
+            Banche che vengono random o comunque che non sono su nessuna delle liste. Nel dubbio controllare la lista "tutte".
+          </div>
+        </div>
+        <!-- CON CHIAVE -->
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+              <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+            </svg>            
+          </div>
+        <!-- CHIAVE -->
+          <div class="col-10 col-md-11">
+            Serve la chiave della portavalori. 
+          </div>
+        </div>
+        <!-- L - V -->
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <span class="l-v small">L-V</span>
+          </div>
+          <div class="col-10 col-md-11">
+            Tutti i giorni
+          </div>
+        </div>
+        <!-- L-M -->
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <span class="l-m small">L/M/V</span>
+          </div>
+          <div class="col-10 col-md-11">
+            Lunedì, mercoledì e venerdì
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <span class="l-m small"><strong>hh:mm</strong></span>
+          </div>
+          <div class="col-10 col-md-11">
+            Orario concordato per passare a consegnare/ritirare. 
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-2 text-center col-md-1 text-md-start">
+            <svg class="list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+              <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+              </svg>
+          </div>
+          <div class="col-10 col-md-11">
+            Clicca per vedere informazioni specifiche sulla banca.
+          </div>
+        </div>
+    </section>
+
+      <!-- info generali -->
+      <section class="container info-g mb-5 text-center">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#info-generali">
+          Indicazioni generali
+        </button>
+        <!-- modal info-g -->
+        <div class="modal fade" id="info-generali" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Indicazioni generali</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="info-g-text-container">
+                  <p>
+                    Come prima cosa conviene controllare la scatola di cartone con scritto "giorno dopo" per vedere se c'è posta da consegnare lasciata dai giorni precedenti. <br> 
+                    Spesso arriva posta per banche che non vanno fatte quel giorno, metterla nel sacchetto corrispondente e lasciarla ordinata nella scatola "giorno dopo".
+                  </p>
+                  <p>
+                    Suddividere le banche da consegnare la mattina (le <strong class="CmRp">CmRp</strong> e le <strong class="Cont-M">Cont-M</strong> - vedi <a href="#legenda">legenda</a>) da quelle da consegnare nel pomeriggio (le  <strong class="Cont-P">Cont-P</strong>, che vanno messe nella scatola con scritto pomeriggio). Una volta suddivise potete eliminare le banche contestuali del pomeriggio dalla lista della mattina (cliccando la X) <br> 
+                    Suddividere per indirizzo le buste sciolte e metterle nei sacchetti della spesa corrispondenti che stanno nella scatola di cartone con scritto "giorno dopo". Se non si trova un sacchetto o se il sacchetto è devastato prenderne uno nuovo e scriverci sopra l'indirizzo con un pennarello. Poi conservarli per riutilizzarli. <br>
+                    Se arrivano buste o borse che non stanno in nessuna lista o sono segnate come <span class="extra"><strong>extra</strong></span> (vedi "tutte*") aggiungerle con <strong>"Aggiungi extra"</strong>, consegnarle la mattina ed inviare uno screeshot degli extra sul gruppo Banche. Se è un indirizzo molto fuori dalla zona di consegna abituale chiedere a Fede o Andre. <br>
+                    * !! Per evitare di azzerare la lista del giorno e le banche extra aggiunte aprire la lista di tutte le banche in un altra pagina.<br>
+                  </p>
+                  <p>
+                    Le banche listate sono già messe in ordine di consegna, sia quelle della mattina che quelle del pomeriggio (da aggiornare). Rispettare comunque gli orari indicati per evitare di aspettare e di far irritare gli impiegati.  <br>
+                  </p>
+                  <p>
+                    Normalmente ogni banca ha la borsa del suo colore, ad esempio le rosse sono le BPM, le blu le Fineco, le nere le Intesa, ecc. <br> Alcune banche non hanno borse ma solo buste sciolte. Nella senzione info (<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                      <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                      </svg>) trovate tutte le cose utili da sapere su ogni singola banca.
+                  </p>
+                  <p>
+                    Ricordarsi di prendere le chiavi delle portavalori che servono (<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
+                      <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                    </svg>) dalla scatola nera che trovate mobile delle batterie. <br>
+                    A fine turno ricordarsi di rimettere le chiavi nella scatola.
+                  </p>
+                  <p>
+                    Per le contestuali (<strong class="Cont-M">Cont-M</strong> e <strong class="Cont-P">Cont-P</strong>) se anche non fosse arrivato niente da consegnare bisogna passare comunque e chiedere se hanno qualcosa da ritirare.<br>
+                    Le <strong class="CmRp">CmRp</strong> (consegna la mattina e ritiro il pomeriggio) la mattina vanno solo consegnate, non chiedere se c'è da ritirare perché il ritiro è già accordato per il pomeriggio non prima dell'ora indicata, se poi loro ti danno qualcosa lo prendi così c'è meno roba da ritirare il pomeriggio. Se non è arrivato niente da consegnare non c'è bisogno di passare la mattina, va fatto solo il ritiro nel pomeriggio.
+                  </p>
+                  <p>
+                    Le buste e le borse ritirate vanno rimesse nelle sacche che ci arrivano la mattina. Le buste in una delle sacche più piccole blu, le borse nelle sacche più grandi bianche. Come ci arrivano a noi.
+                  </p>
+                  <p>
+                    La sera quando si carica il furgone stare attenti a <strong>NON</strong> caricare anche le nostre scatole (quella con scritto "giorno dopo" e quella con scritto "pomeriggio") o eventuali scatole e buste che vanno consegnate nei giorni successivi (nel dubbio chiedere a chi ha fatto la mattina).
+                  </p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+  </main>
+
+<!-- //// FOOTER //// -->
+<footer class="fixed-bottom">
+  <div class="container-fluid m-0 row bg-dark text-bg-dark d-flex justify-content-around align-items-center py-1 text-center">
+    <div class="col-3 text-center">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Contatti
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="tel:+393381163756">Andre</a></li>
+          <li><a class="dropdown-item" href="tel:+393446408611">Fede</a></li>
+          <li><a class="dropdown-item" href="tel:+393423384120">Astrid</a></li>
+          <li><a class="dropdown-item" href="tel:+393516847907">Daniele</a></li>
+          <li><a class="dropdown-item" href="tel:+393333594289">Massimo (furgonista sera)</a></li>
+        </ul>
+      </div>  
+    </div>
+    <div class="col-3 text-center"><a href="#">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
+      </svg>
+    </a></div>
+  </div>  
+</footer>
+</body>
+</html>
