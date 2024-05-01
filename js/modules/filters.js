@@ -1,4 +1,4 @@
-import {bankListContainer, numberOfBanks, allDays, allTypes, titleType, bankDays, bankTypes} from "./variables.js"
+import {bankListContainer, numberOfBanks, allDays, allTypes, titleType} from "./variables.js"
 import { banks } from "./constructor.js"
 import { createList } from "./banks-list-UI.js"
 import { deliverOrderBtn, alphaOrderBtn } from "../banks.js"
@@ -26,7 +26,7 @@ function setFilter(filter, value, key, string) {
     updateOrderParams(key, string)
     filteredBanks = applyFilter()
     numberOfBanks.textContent = filteredBanks.length
-    if (orderParams.day !== '' & orderParams.day !== 'Tutti i giorni') {
+    if (orderParams.day !== '' & orderParams.day !== 'Tutte') {
         if (orderParams.type === 'Mattina') {
            filteredBanks.sort((a, b) => a.orderM - b.orderM)
            switchClassActiveBtn(deliverOrderBtn, alphaOrderBtn) 
