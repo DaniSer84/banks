@@ -2,8 +2,7 @@ import { addExtra} from "./modules/banks-list-UI.js"
 import { banks } from "./modules/constructor.js"
 import {titleDay, titleType, ulExtra, addButton, nameInput, addressInput, bankDays, bankTypes, bankListContainer} from "./modules/variables.js"
 import { setFilter, daysButtons, typesButtons, daysBtnList, typesBtnList, changeToAlphabeticOrder, changeToDeliverOrden } from "./modules/filters.js"
-import { initMap, map } from "./modules/map.js"
-import { addMarkers } from "./modules/markers.js"
+import { initMap } from "./modules/map.js"
 
 banks.sort((a, b) => a.name.localeCompare(b.name))
 
@@ -36,6 +35,10 @@ typesBtnList.addEventListener('click', (e) => {
         titleType.textContent = pressedButton.innerText
     } 
 })
+
+let showMapButton = document.querySelector('.map-btn') 
+let mapContainer = document.querySelector('.map-container')
+showMapButton.addEventListener('click', () => mapContainer.classList.toggle('show'))
 
 addButton.addEventListener('click', () => {
     let name = nameInput.value

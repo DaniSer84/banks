@@ -44,6 +44,9 @@ nav svg {
 .navbar-collapse {
     flex-basis: auto;
 }
+.map-btn:active {
+    scale: 1.1;
+}
 
 /* *** MAIN & LISTS *** */
 .order-buttons-container {

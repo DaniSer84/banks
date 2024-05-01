@@ -8,11 +8,18 @@ body {
 
 
 .map-container {
+  width: 100%;
+  position: fixed;
   height: calc(100vh - 99px);
-  margin-top: 58px;
+  margin-top: 7px;
+  display: none;
+  z-index: 1;
 }
 #map {
     height: 100%;
     border: 2px solid black;
   }
+.show {
+  display: block;
+}
   
