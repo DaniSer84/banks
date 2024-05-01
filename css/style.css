@@ -109,7 +109,7 @@ nav svg {
 .accordion img {
     width: 100%;
 }
-.close-btn {
+.delete-btn {
     position: absolute;
     color: red;
     top: 5px;

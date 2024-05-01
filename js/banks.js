@@ -10,13 +10,6 @@ banks.sort((a, b) => a.name.localeCompare(b.name))
 // ******* FUNCTIONS ************
 
 
-
-// console.log(Object.values(bankDays)[0])
-
-// console.log(applyFilter(day, type))
-
-
-
 daysBtnList.addEventListener('click', (e) => {
     // console.log(e.target)
     let pressedButton = e.target.closest('a')
@@ -31,7 +24,6 @@ daysBtnList.addEventListener('click', (e) => {
 })
 
 typesBtnList.addEventListener('click', (e) => {
-    // console.log(e.target)
     let pressedButton = e.target.closest('a')
     if (pressedButton) {
         pressedButton.classList.add('active')

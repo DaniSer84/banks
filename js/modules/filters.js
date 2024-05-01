@@ -69,7 +69,6 @@ function switchClassActiveBtn(btn1, btn2) {
     btn2.classList.remove('order-btn-active')
 }
 
-
 function updateFilterParam(filter, value) {
     filterParams = {
         ...filterParams,

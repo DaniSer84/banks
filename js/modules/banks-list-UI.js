@@ -25,14 +25,15 @@ function addBanks(container, bank) {
     </svg>`
     let hours = document.createElement('span')
     hours.innerHTML = `<strong>${bank.hours}</strong}`
-    let closeButton = document.createElement('button')
-    closeButton.textContent = 'X'
-    closeButton.classList.add('close-btn')
+    let deleteButton = document.createElement('button')
+    deleteButton.textContent = 'X'
+    deleteButton.classList.add('delete-btn')
 
     // EVENT LISTENERS
-    closeButton.addEventListener('click', () => {
+    deleteButton.addEventListener('click', () => {
         item.remove()
         infoContainer.remove()
+        updateNumberIfDeletedItem()
     })
     bankName.addEventListener('click', function() {
         bankName.classList.toggle('done')
@@ -43,7 +44,7 @@ function addBanks(container, bank) {
     
     container.classList.add('container')
     container.append(item)
-    item.append(bankName, bankAddress, hours, closeButton)
+    item.append(bankName, bankAddress, hours, deleteButton)
     if (bank.key) {
         item.append(key) 
     }
@@ -79,12 +80,17 @@ function addBanks(container, bank) {
     item.insertAdjacentElement('afterend', infoContainer)
 }
 
+function updateNumberIfDeletedItem() {
+    let numberOfBanks = document.querySelector('#number-of-banks')
+    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)-1
+}
+
 function addExtra(name, address, container) {
 
     let item = document.createElement('li')
     let bankName = document.createElement('h4')
     let bankAddress = document.createElement('span')
-    let closeButton = document.createElement('button')
+    let deleteButton = document.createElement('button')
     
     bankName.innerHTML = name
     bankAddress.innerHTML = address
@@ -94,16 +100,16 @@ function addExtra(name, address, container) {
     bankName.classList.toggle('done')
     })
 
-    closeButton.textContent = 'X'
-    closeButton.classList.add('close-btn')
-    closeButton.addEventListener('click', () => {
+    deleteButton.textContent = 'X'
+    deleteButton.classList.add('delete-btn')
+    deleteButton.addEventListener('click', () => {
         item.remove()
     })
 
     container.append(item)
     item.append(bankName)
     item.append(bankAddress)
-    item.append(closeButton)
+    item.append(deleteButton)
 }
 
 export {createList, addExtra}
