@@ -4,8 +4,22 @@ function createList(array, container) {
     container.innerHTML = ''
     array.forEach(bank => {
         addBanks(container, bank)
+        getLatAndLng(bank)
     });
 }
+
+function getLatAndLng(bank) {
+    let string = bank.address.split(' ')
+    string.splice(0, 0, string[string.length-1])
+    string.pop()
+    let formattedAddress = string.join('+')
+    console.log(formattedAddress)
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress}+Mi&key=AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.results[0].geometry.location)
+        })
+} 
 
 function addBanks(container, bank) {
     let item = document.createElement('li')
