@@ -1,16 +1,9 @@
-header, footer {
-    font-size: 1.1rem;
-}
-
+/* *** GENERAL *** */
 button {
     border: none;
     background-color: transparent;
     padding: 0;
 }
-nav svg {
-    scale: 1.6;
-}
-
 hr {
     border: 2px solid black;
 }
@@ -25,10 +18,34 @@ li a {
     text-decoration: none;
 }
 
-.info-g-text-container p {
-    border-bottom: 1px dotted black;
-    padding: 1rem;
+/* *** HEADER *** */
+header, footer {
+    font-size: 1.1rem;
 }
+nav svg {
+    scale: 1.6;
+}
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+.navbar-brand {
+    order: 2;
+    flex: 1 0 1fr;
+}
+.navbar-nav {
+    order: 1;
+    flex: 0 1 1fr;
+}
+.nav-giorni {
+    order: 3;
+    flex: 0 1 1fr;
+}
+.navbar-collapse {
+    flex-basis: auto;
+}
+
+/* *** MAIN & LISTS *** */
 .order-buttons-container {
     display: flex;
     justify-content: space-between;
@@ -56,33 +73,12 @@ li a {
     color: white;
     background-color: #0000c9;
 }
-
 #title-type, #title-type ~ p {
     text-align: center;
 }
-
-
-
-/* .accordion-body ul li {
-    border-bottom: 1px solid lightgray;
-} */
-
-/* .accordion-body ul li:nth-child(odd) {
-    background-color: rgb(235, 235, 235);
-} */
-.giro1 {
-    background-color: rgba(255, 245, 139, 0.543);
+.accordion ul, ol {
+    padding-left: 0;
 }
-.navbar-collapse {
-    flex-basis: auto;
-}
-.list-icon {
-    max-width: 30px;
-}
-
-/* .accordion li .bank-name {
-    flex-grow: 1;
-} */
 .accordion li {
     border-radius: .8rem;
     margin-bottom: 3px;
@@ -109,6 +105,9 @@ li a {
 }
 .accordion li button {
     float: right;
+}
+.accordion img {
+    width: 100%;
 }
 .close-btn {
     position: absolute;
@@ -142,94 +141,41 @@ li a {
     margin-right: .5rem;
     font-size: 0.95rem;
 }
+.info {
+    display: none;
+    position: relative;
+}
+
+/* *** LEGENDA *** */
 .legend {
     position: absolute;
     top: 0;
     right: 0;
 }
-.accordion ul, ol {
-    padding-left: 0;
-}
 .legenda li {
     padding: 1rem;
 }
-.prima_dopo a {
-    text-decoration: none;
+.list-icon {
+    max-width: 30px;
 }
-/* .l-v, .lmv, .l-m, .l-g, .m-g, .mer, .mar {
-    border-radius: 50%;
-    padding: 0.4rem;
-    font-weight: bold;
-    font-size: 0.8rem;
+
+/* *** GENERAL INFO MODAL */
+.info-g-text-container p {
+    border-bottom: 1px dotted black;
+    padding: 1rem;
 }
-.l-v {
-    background-color: rgb(198, 247, 247);
-    white-space: nowrap;
-}
-.lmv {
-    background-color: rgb(174, 238, 194);
-}
-.l-m {
-    background-color: lightgoldenrodyellow;
-}
-.l-g {
-    background-color: lightsteelblue;
-}
-.m-g {
-    background-color: lightgreen;
-}
-.mar {
-    background-color: rgb(215, 157, 80);
-}
-.mer {
-    background-color: bisque;
-} */
+
+/* *** FOOTER *** */
 footer a {
     color: white;
     text-decoration: none;
 }
-.giorni-index li{
-    padding-bottom: .7rem;
-}
-
-.mappe h3 {
-    margin-top: 58px;
-}
 footer .dropdown-item {
     font-weight: bold;
 }
-.navbar-flex {
-    display: flex;
-}
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
-.navbar-brand {
-    order: 2;
-    flex: 1 0 1fr;
-}
-.navbar-nav {
-    order: 1;
-    flex: 0 1 1fr;
-}
-.nav-giorni {
-    order: 3;
-    flex: 0 1 1fr;
-}
-.mappe a {
-    color: rgb(58, 58, 58);
-}
-.accordion-body li a {
+/* .accordion-body li a {
     display: none;
-}
-.info {
-    display: none;
-    position: relative;
-}
-.accordion img {
-    width: 100%;
-}
+} */
 
 
 @media (max-width: 600px) {
@@ -237,7 +183,6 @@ footer .dropdown-item {
         font-size: 0.9rem;
     }
     .accordion li {
-        /* row-gap: 0.5rem; */
         padding-bottom: 1rem;
     } 
     section > ul li {
@@ -247,9 +192,6 @@ footer .dropdown-item {
         max-width: 15px;
         padding: 0.01rem;
     }
-    /* .l-v, .lmv, .l-m, .l-g, .m-g, .mer, .mar{
-        font-size: 0.4rem;
-    } */
     footer .btn {
         font-size: 0.8rem;
     }
