@@ -35,8 +35,7 @@ function addBanks(container, bank) {
         item.remove()
         infoContainer.remove()
         updateNumberIfDeletedItem()
-        // TODO: make a function for this
-        markers.find(marker => marker.getPosition().lat() === bank.coords.lat).setMap(null)
+        findMarker(markers, bank).setMap(null)
     })
     bankName.addEventListener('click', function() {
         bankName.classList.toggle('done')
@@ -113,6 +112,11 @@ function addExtra(name, address, container) {
     item.append(bankName)
     item.append(bankAddress)
     item.append(deleteButton)
+}
+
+function findMarker(markers, bank) {
+    let marker = markers.find(marker => marker.getPosition().lat() === bank.coords.lat)
+    return marker
 }
 
 export {createList, addExtra}
