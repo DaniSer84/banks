@@ -1,4 +1,5 @@
 import { markers } from "./markers.js";
+import { map } from "./map.js";
 
 // *** CREATE BANK LIST ON DOM ***
 function createList(array, container) {
@@ -11,6 +12,11 @@ function createList(array, container) {
 function addBanks(container, bank) {
     let item = document.createElement('li')
     item.classList.add(`${bank.type}`)
+    item.addEventListener('click', () => {
+        let marker = findMarker(markers, bank)
+        map.setCenter(marker.getPosition())
+        map.setZoom(17)
+    })
     let bankName = document.createElement('h4')
     bankName.innerHTML = bank.name
     let bankAddress = document.createElement('span')
