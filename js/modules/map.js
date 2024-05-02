@@ -1,7 +1,7 @@
 let map, infoWindow
 
 function initMap() {
-    const position = { lat: 45.46380300713233, lng: 9.188482633899309}
+    const position = { lat: 45.46862499927196, lng: 9.18923242994601}
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13.5,

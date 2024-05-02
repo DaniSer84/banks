@@ -38,7 +38,11 @@ typesBtnList.addEventListener('click', (e) => {
 
 let showMapButton = document.querySelector('.map-btn') 
 let mapContainer = document.querySelector('.map-container')
-showMapButton.addEventListener('click', () => mapContainer.classList.toggle('show'))
+showMapButton.addEventListener('click', () => {
+    mapContainer.classList.toggle('show')
+    bankListContainer.classList.toggle('bank-list-on-map')
+}
+)
 
 addButton.addEventListener('click', () => {
     let name = nameInput.value

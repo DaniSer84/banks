@@ -53,8 +53,6 @@ function addBanks(container, bank) {
     }
     item.append(infoButton)
 
-    console.log(bank.orderM)
-
     // CREATE INFO SECTION
     let infoContainer = document.createElement('div')
     infoContainer.classList.add('info')

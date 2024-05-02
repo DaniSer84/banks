@@ -49,6 +49,7 @@ nav svg {
 }
 
 /* *** MAIN & LISTS *** */
+/* ** Order Buttons ** */
 .order-buttons-container {
     display: flex;
     justify-content: space-between;
@@ -76,8 +77,21 @@ nav svg {
     color: white;
     background-color: #0000c9;
 }
+/* ** Titles ** */
 #title-type, #title-type ~ p {
     text-align: center;
+}
+
+
+/* ** Bank list container ** */
+
+.bank-list-on-map {
+    position: fixed;
+    bottom: 25px;
+    height: 20vh;
+    overflow: auto;
+    background-color: white;
+    left: 8px;
 }
 .accordion ul, ol {
     padding-left: 0;
