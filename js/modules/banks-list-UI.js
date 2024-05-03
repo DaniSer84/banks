@@ -18,6 +18,18 @@ function addBanks(container, bank) {
     let marker = findMarker(markers, bank)
     let label = bankNumber.toString()
     marker.setLabel(label)
+    let color = ['yellow', 'blue', 'green', 'red', 'orange']
+    if (bank.type === 'CmRp') {
+        marker.setIcon(`../../img/${color[0]}_dot.png`)
+    } else if (bank.type === 'Cont-M') {
+        marker.setIcon(`../../img/${color[1]}_dot.png`)
+    } else if (bank.type === 'Cont-P') {
+        marker.setIcon(`../../img/${color[4]}_dot.png`)
+    } else if (bank.type === 'R') {
+        marker.setIcon(`../../img/${color[2]}_dot.png`)
+    } else {
+        marker.setIcon(`../../img/${color[3]}_dot.png`)
+    }
     bankName.innerHTML = bankNumber+'.'+bank.name
     let bankAddress = document.createElement('span')
     bankAddress.innerHTML = bank.address
