@@ -12,15 +12,17 @@ function createList(array, container) {
 function addBanks(container, bank) {
     let item = document.createElement('li')
     item.classList.add(`${bank.type}`)
-    item.addEventListener('click', () => {
-        let marker = findMarker(markers, bank)
-        map.setCenter(marker.getPosition())
-        map.setZoom(17)
-    })
     let bankName = document.createElement('h4')
     bankName.innerHTML = bank.name
     let bankAddress = document.createElement('span')
     bankAddress.innerHTML = bank.address
+    let pin = document.createElement('span')
+    pin.innerHTML = `<i class="fa-solid fa-location-dot"></i>`
+    pin.addEventListener('click', () => {
+    let marker = findMarker(markers, bank)
+    map.setCenter(marker.getPosition())
+        map.setZoom(16)
+    })
     let key = document.createElement('span')
     key.innerHTML = `<svg class="list-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
     <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
@@ -42,6 +44,7 @@ function addBanks(container, bank) {
         infoContainer.remove()
         updateNumberIfDeletedItem()
         findMarker(markers, bank).setMap(null)
+        map.setCenter(markers[markers.indexOf(findMarker(markers, bank))+1].getPosition())
     })
     bankName.addEventListener('click', function() {
         bankName.classList.toggle('done')
@@ -52,7 +55,7 @@ function addBanks(container, bank) {
     
     container.classList.add('container')
     container.append(item)
-    item.append(bankName, bankAddress, hours, deleteButton)
+    item.append(bankName, bankAddress, hours, pin,deleteButton)
     if (bank.key) {
         item.append(key) 
     }
@@ -123,6 +126,11 @@ function addExtra(name, address, container) {
 function findMarker(markers, bank) {
     let marker = markers.find(marker => marker.getPosition().lat() === bank.coords.lat)
     return marker
+}
+
+function nextMarker(markers, bank) {
+    let nextMarker = markers[markers.indexOf(findMarker(markers, bank))+1]
+    return nextMarker
 }
 
 export {createList, addExtra}
