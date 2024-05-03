@@ -62,5 +62,5 @@ deliverOrderBtn.addEventListener('click', () => changeToDeliverOrden())
 let deleteListBtn = document.querySelector('.delete-list-btn')
 deleteListBtn.addEventListener('click', () => location.reload())
 
-export {daysButtons, typesButtons, deliverOrderBtn, alphaOrderBtn}
+export {banks, daysButtons, typesButtons, deliverOrderBtn, alphaOrderBtn}
 

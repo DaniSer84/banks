@@ -10,7 +10,7 @@ body {
 .map-container {
   width: 100%;
   position: fixed;
-  height: calc(80vh - 99px);
+  height: calc(80vh - 158px);
   display: none;
   z-index: 1;
   top: 58px;

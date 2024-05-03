@@ -104,4 +104,4 @@ function applyFilter() {
 }
 
 
-export {setFilter, changeToAlphabeticOrder, changeToDeliverOrden, daysButtons, typesButtons, daysBtnList, typesBtnList}
+export {filteredBanks, setFilter, changeToAlphabeticOrder, changeToDeliverOrden, daysButtons, typesButtons, daysBtnList, typesBtnList}

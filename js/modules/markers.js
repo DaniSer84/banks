@@ -13,7 +13,6 @@ function addMarkers(map, banks) {
           });
 
         bindInfoWindow(marker, createMarkerDetails(bank))
-
         markers.push(marker)
     })
     return markers

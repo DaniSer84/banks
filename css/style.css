@@ -88,7 +88,7 @@ nav svg {
 .bank-list-on-map {
     position: fixed;
     bottom: 25px;
-    height: 20vh;
+    height: calc(20vh + 60px);
     overflow: auto;
     background-color: white;
     left: 8px;
