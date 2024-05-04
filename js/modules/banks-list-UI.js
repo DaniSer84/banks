@@ -144,9 +144,4 @@ function findMarker(markers, bank) {
     return marker
 }
 
-function nextMarker(markers, bank) {
-    let nextMarker = markers[markers.indexOf(findMarker(markers, bank))+1]
-    return nextMarker
-}
-
 export {createList, addExtra}
