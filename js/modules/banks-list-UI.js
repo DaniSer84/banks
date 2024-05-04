@@ -71,6 +71,7 @@ function addBanks(container, bank) {
     
     container.classList.add('container')
     container.append(item)
+
     item.append(bankName, bankAddress, hours, pin,deleteButton)
     if (bank.key) {
         item.append(key) 
