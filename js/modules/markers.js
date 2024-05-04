@@ -22,9 +22,10 @@ function createMarkerDetails(bank) {
     return `
         <h3>${bank.name}</h3>
         <p>${bank.address}</p>
-        <p>${bank.type}</p>
-        <p>${bank.days}</p>
-        <a href="https://www.google.com/maps?saddr=My+Location&daddr=${bank.coords.lat},${bank.coords.lng}" target="_blank">Directions</a>
+        <p><b>tipo</b>: ${bank.type}</p>
+        <p><b>giorni</b>: ${bank.days}</p>
+        <p>${bank.description}</p>
+        <a href="https://www.google.com/maps?saddr=My+Location&daddr=${bank.coords.lat},${bank.coords.lng}" target="_blank">Naviga</a>
     `
 }
 

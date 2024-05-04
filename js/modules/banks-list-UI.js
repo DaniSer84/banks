@@ -96,7 +96,7 @@ function addBanks(container, bank) {
     let immagine = document.createElement('li')
     immagine.innerHTML = `<strong>Foto</strong>: <img src="${bank.image}">`
     let mappa = document.createElement('li')
-    mappa.innerHTML = `<strong>GoogleMaps</strong>: <a href="${bank.map}" target="_blank">naviga</a>`
+    mappa.innerHTML = `<strong>GoogleMaps</strong>: <a href="https://www.google.com/maps?saddr=My+Location&daddr=${bank.coords.lat},${bank.coords.lng}" target="_blank">Naviga</a>`
     let legenda = document.createElement('a')
     legenda.textContent = 'legenda'
     legenda.href = '#legenda'

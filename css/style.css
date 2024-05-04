@@ -81,6 +81,25 @@ nav svg {
 #title-type, #title-type ~ p {
     text-align: center;
 }
+.titles-on-map {
+    height: 40px;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.646);
+    bottom: 35%;
+    z-index: 4;
+    left: 0;
+    color: white;
+    display: flex;
+    align-items: end;
+    gap: .5rem;
+    padding: .3rem;
+}
+.titles-on-map h1 {
+    font-size: 1.5rem;
+}
+.titles-on-map h1, p, h3 {
+    margin-bottom: 0;
+}
 
 
 /* ** Bank list container ** */
@@ -88,11 +107,14 @@ nav svg {
 .bank-list-on-map {
     position: fixed;
     bottom: 25px;
-    height: calc(20vh + 60px);
-    overflow: auto;
-    background-color: white;
-    left: 8px;
+    height: calc(20% + 60px);
+    background-color: rgb(255, 255, 255);
+    left: 5px;
+    width: 100%;
+    padding-top: 58px;
+    overflow: scroll;
 }
+
 .accordion ul, ol {
     padding-left: 0;
 }
@@ -193,12 +215,12 @@ footer a {
 footer .dropdown-item {
     font-weight: bold;
 }
-/* .accordion-body li a {
-    display: none;
-} */
 
 
-@media (max-width: 600px) {
+@media (max-width: 790px) {
+    .container {
+        max-width: 100%;
+    }
     body {
         font-size: 0.9rem;
     }
