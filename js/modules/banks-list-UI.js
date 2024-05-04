@@ -1,6 +1,8 @@
-import { markers } from "./markers.js";
-import { map } from "./map.js";
+import { markers} from "./markers.js";
+import { bindInfoWindow, map } from "./map.js";
 import {filteredBanks} from "./filters.js"
+
+let apiKey = 'AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I'
 
 // *** CREATE BANK LIST ON DOM ***
 function createList(array, container) {
@@ -138,6 +140,8 @@ function addExtra(name, address, container) {
     item.append(bankName)
     item.append(bankAddress)
     item.append(deleteButton)
+
+    addMarkerForExtra(name, address)
 }
 
 function findMarker(markers, bank) {
@@ -145,21 +149,29 @@ function findMarker(markers, bank) {
     return marker
 }
 
-let apiKey = 'AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I'
-let address = '8 Via Turati'
-
-async function convertAddressToCoords(address) {
+function convertAddressToCoords(address) {
     let formattedAddress = address.split(' ').join('+')
-    let response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
-    let data = await response.json()
-    let coords = await data.results[0].geometry.location
-        
-    console.log(coords)
+    let coords = fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
+    .then(res => res.json())
+    .then(data => data.results[0].geometry.location)
+
     return coords
 }
 
-convertAddressToCoords(address)
-
-
+async function addMarkerForExtra (name, address) {
+    let coords = await convertAddressToCoords(address)
+    let marker = new google.maps.Marker({
+        position: coords,
+        map
+    })
+    marker.setIcon('../../img/red_dot.png')
+    marker.setLabel('E')
+    let details = `
+    <h3>${name}</h3>
+    <p>${address}</h3>
+    <a href="https://www.google.com/maps?saddr=My+Location&daddr=${coords.lat},${coords.lng}" target="_blank">Naviga</a>
+    `
+    bindInfoWindow(marker, details)
+}
 
 export {createList, addExtra}
