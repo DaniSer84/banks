@@ -180,6 +180,9 @@ nav svg {
 }
 
 /* *** GENERAL INFO MODAL */
+.info-g {
+    padding-bottom: 60px;
+}
 .info-g-text-container p {
     border-bottom: 1px dotted black;
     padding: 1rem;
