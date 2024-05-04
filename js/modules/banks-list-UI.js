@@ -145,4 +145,21 @@ function findMarker(markers, bank) {
     return marker
 }
 
+let apiKey = 'AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I'
+let address = '8 Via Turati'
+
+async function convertAddressToCoords(address) {
+    let formattedAddress = address.split(' ').join('+')
+    let response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
+    let data = await response.json()
+    let coords = await data.results[0].geometry.location
+        
+    console.log(coords)
+    return coords
+}
+
+convertAddressToCoords(address)
+
+
+
 export {createList, addExtra}
