@@ -115,6 +115,19 @@ nav svg {
     overflow: scroll;
 }
 
+/* Extra list container */
+.extra-list-container {
+    position: fixed;
+    bottom: 25px;
+    height: calc(20% + 60px);
+    background-color: rgb(255, 255, 255);
+    left: 5px;
+    width: 100%;
+    padding-top: 58px;
+    overflow: scroll;
+    z-index: 1;
+}
+
 .accordion ul, ol {
     padding-left: 0;
 }
@@ -187,6 +200,7 @@ nav svg {
     display: none;
     position: relative;
 }
+
 
 /* *** LEGENDA *** */
 .legend {

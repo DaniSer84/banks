@@ -121,6 +121,8 @@ function addExtra(name, address, container) {
     let bankName = document.createElement('h4')
     let bankAddress = document.createElement('span')
     let deleteButton = document.createElement('button')
+    let pin = document.createElement('span')
+    pin.innerHTML = `<i class="fa-solid fa-location-dot"></i>`
     
     bankName.innerHTML = name
     bankAddress.innerHTML = address
@@ -136,12 +138,10 @@ function addExtra(name, address, container) {
         item.remove()
     })
 
-    container.append(item)
-    item.append(bankName)
-    item.append(bankAddress)
-    item.append(deleteButton)
+    addMarkerForExtra(name, address, pin)
 
-    addMarkerForExtra(name, address)
+    container.append(item)
+    item.append(bankName, bankAddress, pin, deleteButton)
 }
 
 function findMarker(markers, bank) {
@@ -149,16 +149,16 @@ function findMarker(markers, bank) {
     return marker
 }
 
-function convertAddressToCoords(address) {
+async function convertAddressToCoords(address) {
     let formattedAddress = address.split(' ').join('+')
-    let coords = fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
+    coords = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
     .then(res => res.json())
     .then(data => data.results[0].geometry.location)
 
-    return coords
+    return await coords
 }
 
-async function addMarkerForExtra (name, address) {
+async function addMarkerForExtra (name, address, btn) {
     let coords = await convertAddressToCoords(address)
     let marker = new google.maps.Marker({
         position: coords,
@@ -168,10 +168,15 @@ async function addMarkerForExtra (name, address) {
     marker.setLabel('E')
     let details = `
     <h3>${name}</h3>
-    <p>${address}</h3>
+    <p>${address}</p>
     <a href="https://www.google.com/maps?saddr=My+Location&daddr=${coords.lat},${coords.lng}" target="_blank">Naviga</a>
     `
     bindInfoWindow(marker, details)
+
+    btn.addEventListener('click', () => {
+        map.setZoom(16)
+        map.panTo(coords)
+    })
 }
 
 export {createList, addExtra}
