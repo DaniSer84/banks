@@ -1,6 +1,9 @@
-import { markers } from "./markers.js";
-import { map } from "./map.js";
+import { markers} from "./markers.js";
+import { bindInfoWindow, map } from "./map.js";
 import {filteredBanks} from "./filters.js"
+
+let apiKey = 'AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I'
+let numberOfBanks = document.querySelector('#number-of-banks')
 
 // *** CREATE BANK LIST ON DOM ***
 function createList(array, container) {
@@ -96,7 +99,7 @@ function addBanks(container, bank) {
     let immagine = document.createElement('li')
     immagine.innerHTML = `<strong>Foto</strong>: <img src="${bank.image}">`
     let mappa = document.createElement('li')
-    mappa.innerHTML = `<strong>GoogleMaps</strong>: <a href="${bank.map}" target="_blank">naviga</a>`
+    mappa.innerHTML = `<strong>GoogleMaps</strong>: <a href="https://www.google.com/maps?saddr=My+Location&daddr=${bank.coords.lat},${bank.coords.lng}" target="_blank">Naviga</a>`
     let legenda = document.createElement('a')
     legenda.textContent = 'legenda'
     legenda.href = '#legenda'
@@ -108,10 +111,6 @@ function addBanks(container, bank) {
     item.insertAdjacentElement('afterend', infoContainer)
 }
 
-function updateNumberIfDeletedItem() {
-    let numberOfBanks = document.querySelector('#number-of-banks')
-    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)-1
-}
 
 function addExtra(name, address, container) {
 
@@ -119,30 +118,74 @@ function addExtra(name, address, container) {
     let bankName = document.createElement('h4')
     let bankAddress = document.createElement('span')
     let deleteButton = document.createElement('button')
+    let pin = document.createElement('span')
+    pin.innerHTML = `<i class="fa-solid fa-location-dot"></i>`
     
     bankName.innerHTML = name
     bankAddress.innerHTML = address
     item.classList.add('Extra')
     
     bankName.addEventListener('click', function() {
-    bankName.classList.toggle('done')
+        bankName.classList.toggle('done')
     })
+
+    updateNumberofBanks()
 
     deleteButton.textContent = 'X'
     deleteButton.classList.add('delete-btn')
     deleteButton.addEventListener('click', () => {
         item.remove()
+        updateNumberIfDeletedItem()
     })
-
+    
+    addMarkerForExtra(name, address, pin, deleteButton)
+    
     container.append(item)
-    item.append(bankName)
-    item.append(bankAddress)
-    item.append(deleteButton)
+    item.append(bankName, bankAddress, pin, deleteButton)
+}
+
+function updateNumberIfDeletedItem() {
+    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)-1
+}
+
+function updateNumberofBanks() {
+    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)+1
 }
 
 function findMarker(markers, bank) {
     let marker = markers.find(marker => marker.getPosition().lat() === bank.coords.lat)
     return marker
+}
+
+function convertAddressToCoords(address) {
+    let formattedAddress = address.split(' ').join('+')
+    let coords = fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
+    .then(res => res.json())
+    .then(data => data.results[0].geometry.location)
+
+    return coords
+}
+
+async function addMarkerForExtra (name, address, btn, deleteBtn) {
+    let coords = await convertAddressToCoords(address)
+    let marker = await new google.maps.Marker({
+        position: coords,
+        map
+    })
+    marker.setIcon('../../img/red_dot.png')
+    marker.setLabel('E')
+    let details = `
+    <h3>${name}</h3>
+    <p>${address}</p>
+    <a href="https://www.google.com/maps?saddr=My+Location&daddr=${coords.lat},${coords.lng}" target="_blank">Naviga</a>
+    `
+    bindInfoWindow(marker, details)
+
+    btn.addEventListener('click', () => {
+        map.setZoom(16)
+        map.panTo(coords)
+    })
+    deleteBtn.addEventListener('click', () => marker.setMap(null))
 }
 
 export {createList, addExtra}

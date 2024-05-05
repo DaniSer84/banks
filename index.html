@@ -74,41 +74,44 @@
   <div id="map"></div>
 </div>
     <div class="order-buttons-container">
-      <p class="scegli">Scegli una lista &#9757</p>
+      <div>
+        <p class="scegli mt-2">Scegli una lista &#9757</p>
+        <p><a href="#add-extra">Aggiungi extra</a></p>
+      </div>
       <div>
         <h4>ordine</h4>
         <div class="order-btn-container">
           <button id="alpha-order" class="order-btn order-btn-active"><i class="fa-solid fa-arrow-down-a-z"></i></button>
-          <button id="deliver-order" class="order-btn"><i class="fa-solid fa-route"></i></button>
+          <button id="deliver-order" class="order-btn" disabled><i class="fa-solid fa-route"></i></button>
         </div>
       </div>
     </div>
     <section class="container">
-      <div class="titles-on-map-container">
-        <div class="titles-on-map">
-          <h1 class="display-3 text-center" id="title-day"></h1>
-          <h3 id="title-type"></h3>
-          <p>Tot: <b><span id="number-of-banks"></b></span> banche</p>
-        </div>
+      <div id= titles-container  class="">
+        <h1 class="display-3 text-center" id="title-day"></h1>
+        <h3 id="title-type"></h3>
+        <p>Tot: <b><span id="number-of-banks">0</b></span> banche</p>
       </div>
       <div class="accordion" id="accordionExample">
+      <button id="show-X-btn" class="show-X-btn hide">Xtr</button>
         <ul id="bank-list-container" class="">
         </ul>
       </div>
       <div class="accordion" id="accordionExample">
         <h4 class="text-center">Extra</h4>
-        <ul id="extra">
+        <ul id="extra" class="">
         </ul>
       </div>
     </section>
-    <div class="container">
-      <h3>Aggiungi extra</h3>
+    <div id="add-extra" class="container pt-5">
+      <h3 class="mb-2">Aggiungi extra</h3>
       <label for="nome">Nome</label>
       <input class="mb-2" type="text" id="nome" list="nomi">
       <datalist id="nomi">
         <option value="Anima"></option>
         <option value="Allianz"></option>
         <option value="Credit Suisse"></option>
+        <option value="Intesa San Paolo"></option>
         <option value="Intrum"></option>
         <option value="Omega"></option>
       </datalist><br>
@@ -117,11 +120,14 @@
       <datalist id="indirizzi">
         <option value="Corso Garibaldi 99"></option>
         <option value="Via Turati 8"></option>
+        <option value="Via Principe Amedeo, 1"></option>
+        <option value="Via Filippo Corridoni, 3"></option>
         <option value="Via Santa Margherita 3"></option>
         <option value="Bastioni di Porta Nuova 19"></option>
-        <option value="Via Principe Amedeo 1"></option>
+        <option value="Via Cesare Battisti, 11"></option>
+        <option value="Via Borgogna, 2/4"></option>
       </datalist><br>
-      <button type="button" class="btn btn bg-primary text-white" id="add-btn">Aggiungi</button>
+      <button type="button" class="btn btn bg-primary text-white mt-2" id="add-btn">Aggiungi</button>
     </div>
 
     <!-- *** LEGENDA *** -->

@@ -1,4 +1,4 @@
-import {bankListContainer, numberOfBanks, allDays, allTypes, titleType} from "./variables.js"
+import {bankListContainer, numberOfBanks, allDays, allTypes, titleType, ulExtra} from "./variables.js"
 import { banks } from "./constructor.js"
 import { createList } from "./banks-list-UI.js"
 import { deliverOrderBtn, alphaOrderBtn } from "../banks.js"
