@@ -148,6 +148,10 @@ nav svg {
 .show-X-btn:active {
     scale: 1.03;
 }
+.show-X-btn-active {
+    background-color: #ac0000;
+    color: white;
+}
 .hide {
     display: none;
 }

@@ -29,4 +29,6 @@ function createMarkerDetails(bank) {
     `
 }
 
+// TODO: change markers z-index when clicked
+
 export {addMarkers, markers}

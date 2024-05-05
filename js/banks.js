@@ -47,6 +47,7 @@ showMapButton.addEventListener('click', () => {
     showXBtn.classList.toggle('hide')
     showMapButton.classList.toggle('active')
     ulExtra.classList.remove('extra-list-container-on-map')
+    showXBtn.classList.remove('show-X-btn-active')
 }
 )
 
@@ -68,7 +69,10 @@ deliverOrderBtn.addEventListener('click', () => changeToDeliverOrden())
 let deleteListBtn = document.querySelector('.delete-list-btn')
 deleteListBtn.addEventListener('click', () => location.reload())
 
-showXBtn.addEventListener('click', () => ulExtra.classList.toggle('extra-list-container-on-map'))
+showXBtn.addEventListener('click', () => {
+    ulExtra.classList.toggle('extra-list-container-on-map')
+    showXBtn.classList.toggle('show-X-btn-active')
+})
 
 export {banks, daysButtons, typesButtons, deliverOrderBtn, alphaOrderBtn}
 
