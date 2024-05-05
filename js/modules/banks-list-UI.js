@@ -3,6 +3,7 @@ import { bindInfoWindow, map } from "./map.js";
 import {filteredBanks} from "./filters.js"
 
 let apiKey = 'AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I'
+let numberOfBanks = document.querySelector('#number-of-banks')
 
 // *** CREATE BANK LIST ON DOM ***
 function createList(array, container) {
@@ -110,10 +111,6 @@ function addBanks(container, bank) {
     item.insertAdjacentElement('afterend', infoContainer)
 }
 
-function updateNumberIfDeletedItem() {
-    let numberOfBanks = document.querySelector('#number-of-banks')
-    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)-1
-}
 
 function addExtra(name, address, container) {
 
@@ -129,19 +126,30 @@ function addExtra(name, address, container) {
     item.classList.add('Extra')
     
     bankName.addEventListener('click', function() {
-    bankName.classList.toggle('done')
+        bankName.classList.toggle('done')
     })
+
+    updateNumberofBanks()
 
     deleteButton.textContent = 'X'
     deleteButton.classList.add('delete-btn')
     deleteButton.addEventListener('click', () => {
         item.remove()
+        updateNumberIfDeletedItem()
     })
-
-    addMarkerForExtra(name, address, pin)
-
+    
+    addMarkerForExtra(name, address, pin, deleteButton)
+    
     container.append(item)
     item.append(bankName, bankAddress, pin, deleteButton)
+}
+
+function updateNumberIfDeletedItem() {
+    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)-1
+}
+
+function updateNumberofBanks() {
+    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)+1
 }
 
 function findMarker(markers, bank) {
@@ -158,9 +166,9 @@ function convertAddressToCoords(address) {
     return coords
 }
 
-async function addMarkerForExtra (name, address, btn) {
+async function addMarkerForExtra (name, address, btn, deleteBtn) {
     let coords = await convertAddressToCoords(address)
-    let marker = new google.maps.Marker({
+    let marker = await new google.maps.Marker({
         position: coords,
         map
     })
@@ -177,6 +185,7 @@ async function addMarkerForExtra (name, address, btn) {
         map.setZoom(16)
         map.panTo(coords)
     })
+    deleteBtn.addEventListener('click', () => marker.setMap(null))
 }
 
 export {createList, addExtra}

@@ -44,8 +44,12 @@ nav svg {
 .navbar-collapse {
     flex-basis: auto;
 }
+/* MAP button */
 .map-btn:active {
     scale: 1.1;
+}
+.map-btn.active i{
+    color: #64ff35;
 }
 
 /* *** MAIN & LISTS *** */
@@ -77,6 +81,7 @@ nav svg {
     color: white;
     background-color: #0000c9;
 }
+
 /* ** Titles ** */
 #title-type, #title-type ~ p {
     text-align: center;
@@ -147,6 +152,7 @@ nav svg {
     display: none;
 }
 
+/*  Banks' lists */
 .accordion ul, ol {
     padding-left: 0;
 }

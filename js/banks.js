@@ -45,6 +45,7 @@ showMapButton.addEventListener('click', () => {
     bankListContainer.classList.toggle('bank-list-on-map')
     titlesContainer.classList.toggle('titles-on-map')
     showXBtn.classList.toggle('hide')
+    showMapButton.classList.toggle('active')
 }
 )
 
