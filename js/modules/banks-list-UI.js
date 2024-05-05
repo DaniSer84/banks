@@ -149,13 +149,13 @@ function findMarker(markers, bank) {
     return marker
 }
 
-async function convertAddressToCoords(address) {
+function convertAddressToCoords(address) {
     let formattedAddress = address.split(' ').join('+')
-    coords = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
+    let coords = fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
     .then(res => res.json())
     .then(data => data.results[0].geometry.location)
 
-    return await coords
+    return coords
 }
 
 async function addMarkerForExtra (name, address, btn) {

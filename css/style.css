@@ -85,7 +85,7 @@ nav svg {
     height: 40px;
     position: fixed;
     background-color: rgba(0, 0, 0, 0.646);
-    bottom: 35%;
+    bottom: 28%;
     z-index: 4;
     left: 0;
     color: white;
@@ -107,25 +107,44 @@ nav svg {
 .bank-list-on-map {
     position: fixed;
     bottom: 25px;
-    height: calc(20% + 60px);
+    height: calc(20%);
     background-color: rgb(255, 255, 255);
     left: 5px;
     width: 100%;
-    padding-top: 58px;
+    /* padding-top: 58px; */
     overflow: scroll;
+    z-index: 1;
 }
 
 /* Extra list container */
-.extra-list-container {
+.extra-list-container-on-map {
     position: fixed;
     bottom: 25px;
-    height: calc(20% + 60px);
-    background-color: rgb(255, 255, 255);
+    height: calc(20%);
+    background-color: white;
     left: 5px;
     width: 100%;
-    padding-top: 58px;
+    /* padding-top: 58px; */
     overflow: scroll;
     z-index: 1;
+}
+.show-X-btn {
+    padding: .2rem .4rem;
+    background-color: #ff6767da;
+    color: #ac0000;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 2px solid #ba0303;
+    position: fixed;
+    bottom: 29%;
+    right: 5%;
+    z-index: 9;
+}
+.show-X-btn:active {
+    scale: 1.03;
+}
+.hide {
+    display: none;
 }
 
 .accordion ul, ol {
