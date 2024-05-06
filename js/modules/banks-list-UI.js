@@ -130,12 +130,15 @@ function addExtra(name, address, container) {
     })
 
     updateNumberofBanks()
+    let numberOfExtra = document.querySelector('#number-of-extra')
+    numberOfExtra.textContent = parseInt(numberOfExtra.textContent)+1
 
     deleteButton.textContent = 'X'
     deleteButton.classList.add('delete-btn')
     deleteButton.addEventListener('click', () => {
         item.remove()
         updateNumberIfDeletedItem()
+        numberOfExtra.textContent = parseInt(numberOfExtra.textContent)-1
     })
     
     addMarkerForExtra(name, address, pin, deleteButton)
@@ -151,6 +154,7 @@ function updateNumberIfDeletedItem() {
 function updateNumberofBanks() {
     numberOfBanks.textContent = parseInt(numberOfBanks.innerText)+1
 }
+
 
 function findMarker(markers, bank) {
     let marker = markers.find(marker => marker.getPosition().lat() === bank.coords.lat)
