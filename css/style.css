@@ -89,11 +89,9 @@ nav svg {
 .titles-on-map {
     height: 40px;
     position: fixed;
-    background-color: rgba(0, 0, 0, 0.646);
-    bottom: 28%;
+    bottom: 27%;
     z-index: 4;
     left: 0;
-    color: white;
     display: flex;
     align-items: end;
     gap: .5rem;
@@ -134,14 +132,14 @@ nav svg {
     z-index: 1;
 }
 .show-X-btn {
-    padding: .2rem .4rem;
+    padding: 0 .4rem;
     background-color: #ff6767da;
     color: #ac0000;
     font-weight: 500;
     border-radius: 5px;
     border: 2px solid #ba0303;
     position: fixed;
-    bottom: 29%;
+    bottom: 31%;
     right: 5%;
     z-index: 9;
 }

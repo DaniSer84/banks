@@ -61,7 +61,7 @@ function addBanks(container, bank) {
     deleteButton.addEventListener('click', () => {
         item.remove()
         infoContainer.remove()
-        updateNumberIfDeletedItem()
+        updateNumberOfBanks(numberOfBanks, -1)
         marker.setMap(null)
         map.panTo(markers[markers.indexOf(marker)+1].getPosition())
     })
@@ -111,7 +111,6 @@ function addBanks(container, bank) {
     item.insertAdjacentElement('afterend', infoContainer)
 }
 
-
 function addExtra(name, address, container) {
 
     let item = document.createElement('li')
@@ -129,16 +128,16 @@ function addExtra(name, address, container) {
         bankName.classList.toggle('done')
     })
 
-    updateNumberofBanks()
     let numberOfExtra = document.querySelector('#number-of-extra')
-    numberOfExtra.textContent = parseInt(numberOfExtra.textContent)+1
-
+    updateNumberOfBanks(numberOfExtra, +1)
+    
     deleteButton.textContent = 'X'
     deleteButton.classList.add('delete-btn')
     deleteButton.addEventListener('click', () => {
         item.remove()
-        updateNumberIfDeletedItem()
-        numberOfExtra.textContent = parseInt(numberOfExtra.textContent)-1
+        updateNumberOfBanks(numberOfExtra, -1)
+        // updateNumberIfDeletedItem()
+        // numberOfExtra.textContent = parseInt(numberOfExtra.textContent)-1
     })
     
     addMarkerForExtra(name, address, pin, deleteButton)
@@ -147,12 +146,12 @@ function addExtra(name, address, container) {
     item.append(bankName, bankAddress, pin, deleteButton)
 }
 
-function updateNumberIfDeletedItem() {
-    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)-1
-}
+// function updateNumberIfDeletedItem() {
+//     numberOfBanks.textContent = parseInt(numberOfBanks.innerText)-1
+// }
 
-function updateNumberofBanks() {
-    numberOfBanks.textContent = parseInt(numberOfBanks.innerText)+1
+function updateNumberOfBanks(number, update) {
+    number.textContent = parseInt(number.textContent) + update
 }
 
 
