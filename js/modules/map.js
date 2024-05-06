@@ -25,6 +25,7 @@ function bindInfoWindow(marker, content) {
     })
 }
 
+
 export {initMap, bindInfoWindow, map}
 
 

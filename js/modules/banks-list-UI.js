@@ -67,6 +67,12 @@ function addBanks(container, bank) {
     })
     bankName.addEventListener('click', function() {
         bankName.classList.toggle('done')
+        // let marker = findMarker(markers, bank)
+        if (bankName.classList.contains('done')) {
+            marker.setZIndex(9999)
+        } else {
+            marker.setZIndex(-999)
+        }
     })
     infoButton.addEventListener('click', () => {
         infoContainer.classList.toggle('info')
