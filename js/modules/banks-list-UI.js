@@ -67,7 +67,6 @@ function addBanks(container, bank) {
     })
     bankName.addEventListener('click', function() {
         bankName.classList.toggle('done')
-        // let marker = findMarker(markers, bank)
         if (bankName.classList.contains('done')) {
             marker.setZIndex(9999)
         } else {
@@ -142,8 +141,6 @@ function addExtra(name, address, container) {
     deleteButton.addEventListener('click', () => {
         item.remove()
         updateNumberOfBanks(numberOfExtra, -1)
-        // updateNumberIfDeletedItem()
-        // numberOfExtra.textContent = parseInt(numberOfExtra.textContent)-1
     })
     
     addMarkerForExtra(name, address, pin, deleteButton)
