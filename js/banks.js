@@ -8,6 +8,10 @@ banks.sort((a, b) => a.name.localeCompare(b.name))
 
 
 // ******* FUNCTIONS ************
+window.onbeforeunload = function() {
+    return "Dude, are you sure you want to leave? Think of the kittens!";
+}
+
 initMap()
 
 
