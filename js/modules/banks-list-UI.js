@@ -2,7 +2,6 @@ import { markers} from "./markers.js";
 import { bindInfoWindow, map } from "./map.js";
 import {filteredBanks} from "./filters.js"
 
-let apiKey = 'AIzaSyBUqW5XdSX8-mV7FnY_yFvQZw-xmnAUi7I'
 let numberOfBanks = document.querySelector('#number-of-banks')
 
 // *** CREATE BANK LIST ON DOM ***
