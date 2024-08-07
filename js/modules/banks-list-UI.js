@@ -1,6 +1,7 @@
 import { markers} from "./markers.js";
 import { bindInfoWindow, map } from "./map.js";
 import {filteredBanks} from "./filters.js"
+import config from "../../config.js";
 
 let numberOfBanks = document.querySelector('#number-of-banks')
 
@@ -164,7 +165,7 @@ function findMarker(markers, bank) {
 
 function convertAddressToCoords(address) {
     let formattedAddress = address.split(' ').join('+')
-    let coords = fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${apiKey}`)
+    let coords = fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${formattedAddress},+Milano&key=${config.API_KEY}`)
     .then(res => res.json())
     .then(data => data.results[0].geometry.location)
 
